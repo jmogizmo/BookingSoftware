@@ -1,0 +1,13 @@
+1 john_doe 1001 R101 12:00
+2 jane_smith 1002 R102 12:30
+3 alice_jones 1003 R103 13:00
+4 bob_miller 1004 R101 13:30
+5 charlie_clark 1005 R104 14:00
+6 eve_turner 1006 R105 14:30
+7 frank_wright 1007 R106 15:00
+8 grace_hall 1008 R107 15:30
+9 henry_wilson 1009 R108 16:00
+10 isabel_green 1010 R109 16:30
+null
+null
+null
