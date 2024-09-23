@@ -299,13 +299,6 @@ public class BookingSoftware {
 
     public static void main(String[] args) throws IOException {
 
-        //initialise booking software   
-        //creating special event room in wg
-        //EventRoom eventroom1 = new EventRoom("WG", 101, 50);
-
-        //creating computer room in wz
-        //ComputerRoom comproom1 = new ComputerRoom("WZ", 102, 21);
-
         BookingSoftware x = new BookingSoftware();
         x.login();
         x.start();
