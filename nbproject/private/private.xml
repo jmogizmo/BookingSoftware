@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/jmone/OneDrive/Documents/GitHub/GITHUB_BookingSoftware/src/bookingsoftware/LoginRegisterView.java</file>
+            <file>file:/C:/Users/jmone/OneDrive/Documents/GitHub/GITHUB_BookingSoftware/src/bookingsoftware/BSView.java</file>
+            <file>file:/C:/Users/jmone/OneDrive/Documents/GitHub/GITHUB_BookingSoftware/src/bookingsoftware/Main.java</file>
+            <file>file:/C:/Users/jmone/OneDrive/Documents/GitHub/GITHUB_BookingSoftware/src/bookingsoftware/UserManager.java</file>
+            <file>file:/C:/Users/jmone/OneDrive/Documents/GitHub/GITHUB_BookingSoftware/src/bookingsoftware/BSController.java</file>
+            <file>file:/C:/Users/jmone/OneDrive/Documents/GitHub/GITHUB_BookingSoftware/src/bookingsoftware/BSModel.java</file>
+            <file>file:/C:/Users/jmone/OneDrive/Documents/GitHub/GITHUB_BookingSoftware/src/bookingsoftware/BookingSoftware.java</file>
+            <file>file:/C:/Users/jmone/OneDrive/Documents/GitHub/GITHUB_BookingSoftware/src/bookingsoftware/LoginRegisterController.java</file>
+        </group>
     </open-files>
 </project-private>

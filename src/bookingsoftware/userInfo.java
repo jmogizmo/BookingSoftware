@@ -42,6 +42,13 @@ public class userInfo {
         this.email = null;
         this.phone = 0;
     }
+    
+    public userInfo(String name, int id){
+        this.name = name;
+        this.studentID = id;
+        this.email = "";
+        this.phone = 0;
+    }
 
     public userInfo(int id, String name, String email, long phone) {
         this.studentID = id;
