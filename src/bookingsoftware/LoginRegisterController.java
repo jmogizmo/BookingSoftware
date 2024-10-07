@@ -20,9 +20,9 @@ public class LoginRegisterController {
     }
     
     private void login(){
-        String name = view.getName();
         int id = view.getID();
-        if(model.authenticateUser(name, id)){
+        String password = view.getPassword();
+        if(model.authenticateUser(id, password)){
             //successful login
             //proceed to main program
         } else {
@@ -32,9 +32,9 @@ public class LoginRegisterController {
     }
     
     private void register(){
-        String name = view.getName();
         int id = view.getID();
-        if(model.addUser(name, id)){
+        String password = view.getPassword();
+        if(model.addUser(id, password)){
             //successful registration
             //proceed to main program
         } else{

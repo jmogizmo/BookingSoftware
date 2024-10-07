@@ -20,6 +20,8 @@ import java.util.Scanner;
  */
 public class userInfo {
 
+    
+    private String password;
     private String name;
     private String email;
     private long phone;
@@ -35,12 +37,18 @@ public class userInfo {
                 "Email: " + this.email + "\n" +
                 "Phone Num: " + this.phone;
     }
+    
+    public userInfo(int id, String password){
+        this.studentID = id;
+        this.password = password;
+    }
 
     public userInfo() {
         this.studentID = 0;
         this.name = null;
         this.email = null;
         this.phone = 0;
+        this.password = "";
     }
     
     public userInfo(String name, int id){
@@ -49,7 +57,23 @@ public class userInfo {
         this.email = "";
         this.phone = 0;
     }
+    
+    public userInfo(String name, int id, String password){
+        this.name = name;
+        this.studentID = id;
+        this.password = password;
+        this.email = "";
+        this.phone = 0;
+    }
 
+    public userInfo(int id, String name, String email, long phone, String password) {
+        this.studentID = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
+    
     public userInfo(int id, String name, String email, long phone) {
         this.studentID = id;
         this.name = name;
@@ -71,6 +95,10 @@ public class userInfo {
 
     public int getStudentID() {
         return studentID;
+    }
+    
+    public String getPassword(){
+        return password;
     }
 
     public void writeUserInfo() throws IOException {

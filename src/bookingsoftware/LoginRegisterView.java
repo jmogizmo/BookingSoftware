@@ -14,8 +14,8 @@ import java.awt.event.ActionListener;
  */
 public class LoginRegisterView extends JFrame {
 
-    private JTextField nameField = new JTextField(10);
     private JTextField IDField = new JTextField(10);
+    private JTextField passwordField = new JPasswordField(10);
     private JButton loginButton = new JButton("Login");
     private JButton registerButton = new JButton("Register");
 
@@ -29,16 +29,12 @@ public class LoginRegisterView extends JFrame {
         setSize(400, 200);
 
         add(new JLabel("Name: "));
-        add(nameField);
-        add(new JLabel("Student ID: "));
         add(IDField);
+        add(new JLabel("Student ID: "));
+        add(passwordField);
         add(loginButton);
         add(registerButton);
 
-    }
-
-    public String getName() {
-        return nameField.getText().trim();
     }
 
     public int getID() {
@@ -48,6 +44,10 @@ public class LoginRegisterView extends JFrame {
             this.displayError("Student ID must be numeric.");
             return -1;
         }
+    }
+
+    public String getPassword() {
+        return passwordField.getText().trim();
     }
 
     public void addLoginListener(ActionListener listener) {
