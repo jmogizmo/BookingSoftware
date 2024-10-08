@@ -9,38 +9,51 @@ package bookingsoftware;
  * @author jmone
  */
 public class LoginRegisterController {
-    private LoginRegisterView view;
+    private LoginRegisterView loginView;
     private UserManager model;
+    private MainMenuView menuView;
+    public static userInfo currentUser;
     
-    public LoginRegisterController(LoginRegisterView view, UserManager model){
-        this.view = view;
+    public LoginRegisterController(LoginRegisterView view, UserManager model, MainMenuView menuView){
+        this.loginView = view;
         this.model = model;
-        this.view.addLoginListener(e -> login());
-        this.view.addRegisterListener(e -> register());
+        this.menuView = menuView;
+        
+        this.loginView.addLoginListener(e -> login());
+        this.loginView.addRegisterListener(e -> register());
     }
     
     private void login(){
-        int id = view.getID();
-        String password = view.getPassword();
+        int id = loginView.getID();
+        String password = loginView.getPassword();
         if(model.authenticateUser(id, password)){
             //successful login
             //proceed to main program
+            loginView.dispose();
+            menuView.setVisible(true);
         } else {
             //unsuccessful login
-            view.displayError("Invalid login details.");
+            loginView.displayError("Invalid login details.");
         }
     }
     
     private void register(){
-        int id = view.getID();
-        String password = view.getPassword();
-        if(model.addUser(id, password)){
+        int id = loginView.getID();
+        String password = loginView.getPassword();
+        //id is not numeric
+        if(id == -1){
+            loginView.displayError("Student ID should be numeric.");
+        }
+        else if((model.addUser(id, password))&&(model.authenticateUser(id, password))){
             //successful registration
             //proceed to main program
-        } else{
+            loginView.dispose();
+            menuView.setVisible(true);
+        } 
+        else{
             //unsuccesful registration
             //user already exists
-            view.displayError("User already exists.");
+            loginView.displayError("User already exists.");
         }
     }
     

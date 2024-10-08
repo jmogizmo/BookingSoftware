@@ -20,6 +20,7 @@ import java.util.Scanner;
  */
 public class userInfo {
 
+    private userInfo user;
     
     private String password;
     private String name;
@@ -100,6 +101,11 @@ public class userInfo {
     public String getPassword(){
         return password;
     }
+    
+    public userInfo getCurrentUser(){
+        return this.user;
+    }
+    
 
     public void writeUserInfo() throws IOException {
         // Copy this user's info to user.txt

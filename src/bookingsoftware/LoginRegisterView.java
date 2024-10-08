@@ -18,22 +18,42 @@ public class LoginRegisterView extends JFrame {
     private JTextField passwordField = new JPasswordField(10);
     private JButton loginButton = new JButton("Login");
     private JButton registerButton = new JButton("Register");
+    private JLabel imageLabel;
+    private static final int HEIGHT = 250;
+    private static final int WIDTH = 200;
 
     //password = studentID
     //initialise
-    public LoginRegisterView() {
+    public LoginRegisterView(/*Graphics g*/) {
         super("Login/Register");
+        //set window position in the middle of screen
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width / 2 - WIDTH / 2, dim.height / 2 - HEIGHT / 2);
 
+        //TODO: load AUT image
+        //ImageIcon autlogoIcon = new ImageIcon("/resources/autlogo.png");
+        //Image autLogo = autlogoIcon.getImage();
+        // Load the image
+        ImageIcon imageIcon = new ImageIcon("/resources/autlogo.png"); // Ensure path is correct
+        Image image = imageIcon.getImage(); // Transform it 
+        Image newimg = image.getScaledInstance(200, 100, java.awt.Image.SCALE_SMOOTH); // Scale it the smooth way  
+        imageIcon = new ImageIcon(newimg);  // Transform it back
+
+        imageLabel = new JLabel(imageIcon);
+
+        //g.drawImage(image,10,10,null);
         setLayout(new FlowLayout());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 200);
+        setSize(HEIGHT, WIDTH);
 
-        add(new JLabel("Name: "));
+        add(imageLabel);
+        add(new JLabel("Student ID:  "));
         add(IDField);
-        add(new JLabel("Student ID: "));
+        add(new JLabel("Password: "));
         add(passwordField);
-        add(loginButton);
         add(registerButton);
+        add(loginButton);
+        
 
     }
 
@@ -41,7 +61,7 @@ public class LoginRegisterView extends JFrame {
         try {
             return Integer.parseInt(IDField.getText().trim());
         } catch (NumberFormatException e) {
-            this.displayError("Student ID must be numeric.");
+            //this.displayError("Student ID must be numeric.");
             return -1;
         }
     }

@@ -5,21 +5,23 @@
 package bookingsoftware;
 
 import javax.swing.SwingUtilities;
+import javax.swing.JFrame;
 
 /**
  *
  * @author jmone
  */
-public class Main {
+public class Main extends JFrame {
 
     public static void main(String[] args) {
         //start login
+        
         SwingUtilities.invokeLater(() -> {
-            LoginRegisterView view = new LoginRegisterView();
+            LoginRegisterView loginView = new LoginRegisterView();
             UserManager model = new UserManager();
-            new LoginRegisterController(view, model);
-            view.setVisible(true);
+            MainMenuView menuView = new MainMenuView();
+            new LoginRegisterController(loginView, model, menuView);
+            loginView.setVisible(true);
         });
-
     }
 }

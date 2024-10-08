@@ -29,4 +29,6 @@ public class UserManager {
         return false;
     }
     
+    //TODO: method to load users from database into the hashmap
+    
 }
