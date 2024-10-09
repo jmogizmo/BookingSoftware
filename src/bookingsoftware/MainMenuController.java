@@ -11,34 +11,42 @@ import javax.swing.JOptionPane;
  * @author jmone
  */
 public class MainMenuController {
+
     private MainMenuView mainMenuView;
     private MyDetailsView myDetailsView;
-    private userInfo userInfo;
+    private LoginRegisterView loginView;
     private UserManager users;
-    
-    public MainMenuController(MainMenuView mainMenuView, MyDetailsView myDetailsView, userInfo userInfo){
+
+    public MainMenuController(MainMenuView mainMenuView, MyDetailsView myDetailsView, LoginRegisterView loginView ) {
         this.mainMenuView = mainMenuView;
         this.myDetailsView = myDetailsView;
-        this.userInfo = userInfo;
-        
+        this.loginView = loginView;
         this.mainMenuView.addDetailsListener(e -> showDetails());
         this.myDetailsView.addBackListener(e -> myDetailsView.dispose());
-        
+        this.mainMenuView.addLogoutListener(e -> logout());
     }
-    
-    private void showDetails(){
-        if(currentUser != null){
-            myDetailsView.setDetails(currentUser.getName(),
-                            currentUser.getStudentID(), 
-                            currentUser.getEmail(),
-                            currentUser.getPhone());
-        } else{
+
+    private void showDetails() {
+        /*if (users.currentUser != null) {
+            myDetailsView.setDetails(users.currentUser.getName(),
+                    users.currentUser.getStudentID(),
+                    users.currentUser.getEmail(),
+                    users.currentUser.getPhone());*/
+            mainMenuView.dispose();
+            myDetailsView.setVisible(true);
+        //} else {
             mainMenuView.displayError("ERROR");
-        }
+        //}
     }
-    
-    public void display(){
+
+    public void display() {
         mainMenuView.setVisible(true);
     }
     
+    public void logout(){
+        mainMenuView.dispose();
+        users.currentUser = null;
+        loginView.setVisible(true);
+    }
+
 }

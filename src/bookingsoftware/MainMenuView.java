@@ -22,6 +22,7 @@ public class MainMenuView extends JFrame {
     private JButton cancelBookingButton = new JButton("Cancel Booking");
     private JButton searchButton = new JButton("Search");
     private JButton detailsButton = new JButton("My Details");
+    private JButton logoutButton = new JButton("Logout");
     private static final int HEIGHT = 400;
     private static final int WIDTH = 500;
 
@@ -32,7 +33,7 @@ public class MainMenuView extends JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - WIDTH / 2, dim.height / 2 - HEIGHT / 2);
         
-        setLayout(new GridLayout(1, 3));
+        setLayout(new GridLayout(3, 1));
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -40,6 +41,7 @@ public class MainMenuView extends JFrame {
         add(searchButton);
         add(detailsButton);
         add(cancelBookingButton);
+        add(logoutButton);
         
     }
 
@@ -57,6 +59,10 @@ public class MainMenuView extends JFrame {
     public void addDetailsListener(ActionListener l){
         detailsButton.addActionListener(l);
     }
+    public void addLogoutListener(ActionListener l){
+        logoutButton.addActionListener(l);
+    }
+    
     public void displayError(String error) {
         JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
     }

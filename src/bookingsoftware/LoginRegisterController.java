@@ -14,13 +14,15 @@ public class LoginRegisterController {
     private UserManager model;
     private MainMenuView menuView;
     private UserDetailsView userDetailsView;
+    private MyDetailsView myDetailsView;
     public static userInfo currentUser;
 
-    public LoginRegisterController(LoginRegisterView view, UserManager model, MainMenuView menuView, UserDetailsView userDetailsView) {
+    public LoginRegisterController(LoginRegisterView view, UserManager model, MainMenuView menuView, UserDetailsView userDetailsView, MyDetailsView myDetailsView) {
         this.loginView = view;
         this.model = model;
         this.menuView = menuView;
         this.userDetailsView = userDetailsView;
+        this.myDetailsView = myDetailsView;
 
         this.loginView.addLoginListener(e -> login());
         this.loginView.addRegisterListener(e -> register());
@@ -75,7 +77,7 @@ public class LoginRegisterController {
 
         if (model.addUser(id, name, password, email, phone)) {
             userDetailsView.dispose();
-            menuView.setVisible(true);
+            loginView.setVisible(true);
         } else {
             //error user already exists.
             loginView.displayError("User already exists.");

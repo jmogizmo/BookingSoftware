@@ -21,7 +21,8 @@ public class Main extends JFrame {
             UserManager model = new UserManager();
             MainMenuView menuView = new MainMenuView();
             UserDetailsView userDetailsView = new UserDetailsView();
-            new LoginRegisterController(loginView, model, menuView, userDetailsView);
+            MyDetailsView myDetailsView = new MyDetailsView();
+            new LoginRegisterController(loginView, model, menuView, userDetailsView, myDetailsView);
             loginView.setVisible(true);
         });
     }

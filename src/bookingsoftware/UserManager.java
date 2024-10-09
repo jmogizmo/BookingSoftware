@@ -14,6 +14,7 @@ import java.util.Map;
 public class UserManager {
 
     private Map<Integer, userInfo> users = new HashMap<>();
+    public userInfo currentUser;
 
     public boolean addUser(int id, String name, String password, String email, long phone) {
         if (id == 0 || name == null || password == null || email == null || phone == 0) {
@@ -21,7 +22,8 @@ public class UserManager {
            return false;
         }
         if (!users.containsKey(id)) {
-            users.put(id, new userInfo(id, name, password, email, phone));
+            currentUser = new userInfo(id, name, password, email, phone);
+            users.put(id, currentUser);
             System.out.println("user added. returned true");
             return true;
         }
