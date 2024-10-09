@@ -20,6 +20,9 @@ import java.util.Scanner;
  */
 public class userInfo {
 
+    private userInfo user;
+
+    private String password;
     private String name;
     private String email;
     private long phone;
@@ -30,10 +33,15 @@ public class userInfo {
     // Override toString to return properly formatted string
     @Override
     public String toString() {
-        return "Name: " + this.name + "\n" +
-                "Student ID: " + this.studentID + "\n" +
-                "Email: " + this.email + "\n" +
-                "Phone Num: " + this.phone;
+        return "Name: " + this.name + "\n"
+                + "Student ID: " + this.studentID + "\n"
+                + "Email: " + this.email + "\n"
+                + "Phone Num: " + this.phone;
+    }
+
+    public userInfo(int id, String password) {
+        this.studentID = id;
+        this.password = password;
     }
 
     public userInfo() {
@@ -41,6 +49,23 @@ public class userInfo {
         this.name = null;
         this.email = null;
         this.phone = 0;
+        this.password = "";
+    }
+
+    public userInfo(String name, int id, String password) {
+        this.name = name;
+        this.studentID = id;
+        this.password = password;
+        this.email = "";
+        this.phone = 0;
+    }
+
+    public userInfo(int id, String name, String password, String email, long phone) {
+        this.studentID = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
     }
 
     public userInfo(int id, String name, String email, long phone) {
@@ -64,6 +89,14 @@ public class userInfo {
 
     public int getStudentID() {
         return studentID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public userInfo getCurrentUser(int id) {
+        return this.user;
     }
 
     public void writeUserInfo() throws IOException {
@@ -166,10 +199,10 @@ public class userInfo {
             // CHECKS IF THE FIRST TWO USER ENTRIES (name & ID) MATCHES.
             if (u.equals(array[0]) && id.equals(array[1])) {
 
-                this.name = array[0];
-                this.studentID = Integer.parseInt(array[1]);
-                this.email = array[2];
-                this.phone = Long.valueOf(array[3]);
+                this.setName(array[0]);
+                this.setStudentID(Integer.parseInt(array[1]));
+                this.setEmail(array[2]);
+                this.setPhone((long) Long.valueOf(array[3]));
                 inputStream.close();
                 return;
             }
@@ -198,7 +231,7 @@ public class userInfo {
      * @param phone the phone to set
      */
     public void setPhone(Long phone) {
-        this.phone = phone;
+        this.setPhone((long) phone);
     }
 
     /**
@@ -206,5 +239,26 @@ public class userInfo {
      */
     public void setStudentID(int studentID) {
         this.studentID = studentID;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(userInfo user) {
+        this.user = user;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * @param phone the phone to set
+     */
+    public void setPhone(long phone) {
+        this.phone = phone;
     }
 }
