@@ -15,12 +15,13 @@ public class Main extends JFrame {
 
     public static void main(String[] args) {
         //start login
-        
+
         SwingUtilities.invokeLater(() -> {
             LoginRegisterView loginView = new LoginRegisterView();
             UserManager model = new UserManager();
             MainMenuView menuView = new MainMenuView();
-            new LoginRegisterController(loginView, model, menuView);
+            UserDetailsView userDetailsView = new UserDetailsView();
+            new LoginRegisterController(loginView, model, menuView, userDetailsView);
             loginView.setVisible(true);
         });
     }

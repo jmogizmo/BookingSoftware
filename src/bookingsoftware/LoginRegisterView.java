@@ -26,6 +26,11 @@ public class LoginRegisterView extends JFrame {
     //initialise
     public LoginRegisterView(/*Graphics g*/) {
         super("Login/Register");
+        //setLayout(new GridLayout(3, 2));  // Simple grid layout
+        setLayout(new FlowLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(HEIGHT, WIDTH);
+
         //set window position in the middle of screen
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - WIDTH / 2, dim.height / 2 - HEIGHT / 2);
@@ -42,10 +47,6 @@ public class LoginRegisterView extends JFrame {
         imageLabel = new JLabel(imageIcon);
 
         //g.drawImage(image,10,10,null);
-        setLayout(new FlowLayout());
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(HEIGHT, WIDTH);
-
         add(imageLabel);
         add(new JLabel("Student ID:  "));
         add(IDField);
@@ -53,7 +54,6 @@ public class LoginRegisterView extends JFrame {
         add(passwordField);
         add(registerButton);
         add(loginButton);
-        
 
     }
 

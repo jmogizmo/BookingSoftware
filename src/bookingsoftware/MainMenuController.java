@@ -14,6 +14,7 @@ public class MainMenuController {
     private MainMenuView mainMenuView;
     private MyDetailsView myDetailsView;
     private userInfo userInfo;
+    private UserManager users;
     
     public MainMenuController(MainMenuView mainMenuView, MyDetailsView myDetailsView, userInfo userInfo){
         this.mainMenuView = mainMenuView;
@@ -26,7 +27,6 @@ public class MainMenuController {
     }
     
     private void showDetails(){
-        userInfo currentUser = userInfo.getCurrentUser();
         if(currentUser != null){
             myDetailsView.setDetails(currentUser.getName(),
                             currentUser.getStudentID(), 
