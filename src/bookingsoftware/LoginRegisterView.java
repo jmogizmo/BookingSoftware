@@ -14,8 +14,8 @@ import java.awt.event.ActionListener;
  */
 public class LoginRegisterView extends JFrame {
 
-    private JTextField IDField = new JTextField(10);
-    private JTextField passwordField = new JPasswordField(10);
+    public JTextField IDField = new JTextField(10);
+    public JTextField passwordField = new JPasswordField(10);
     private JButton loginButton = new JButton("Login");
     private JButton registerButton = new JButton("Register");
     private JLabel imageLabel;

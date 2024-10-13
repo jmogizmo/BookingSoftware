@@ -45,45 +45,44 @@ public class LoginRegisterController {
     }
 
     private void register() {
-//        int id = loginView.getID();
-//        String password = loginView.getPassword();
-//        //id is not numeric
-//        if(id == -1){
-//            loginView.displayError("Student ID should be numeric.");
-//        }
-//        else if((model.addUser(id, password))&&(model.authenticateUser(id, password))){
-//            //successful registration
-//            //proceed to main program
-//            loginView.dispose();
-//            menuView.setVisible(true);
-//        } 
-//        else{
-//            //unsuccesful registration
-//            //user already exists
-//            loginView.displayError("User already exists.");
-//       }
 
         loginView.dispose();
         userDetailsView.setVisible(true);
     }
 
     private void saveUserDetails() {
-        //try{
+        
         int id = userDetailsView.getID();
         String name = userDetailsView.getName();
         String password = userDetailsView.getPassword();
         String email = userDetailsView.getEmail();
         long phone = userDetailsView.getPhoneNumber();
-
-        if (model.addUser(id, name, password, email, phone)) {
-            userDetailsView.dispose();
-            loginView.setVisible(true);
-        } else {
-            //error user already exists.
-            loginView.displayError("User already exists.");
+        
+        
+        int check = model.addUser(id, name, password, email, phone);
+        switch (check) {
+            case 1:
+                //user added successfully
+                userDetailsView.dispose();
+                loginView.setVisible(true);
+                break;
+        
+            case -1:
+                //error user already exists.
+                loginView.displayError("User already exists.");
+                break;
+            case -2:
+                loginView.displayError("Student ID must be numeric");
+                break;
+            case -3:
+                loginView.displayError("Phone number must be numeric");
+                break;
+            default:
+                //addUser returned 0
+                //error not all fields completed
+                loginView.displayError("Please complete all details");
+                break;
         }
-
-        //}
     }
 
     private void backToLogin() {

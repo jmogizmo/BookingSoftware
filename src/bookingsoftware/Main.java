@@ -19,10 +19,12 @@ public class Main extends JFrame {
         SwingUtilities.invokeLater(() -> {
             LoginRegisterView loginView = new LoginRegisterView();
             UserManager model = new UserManager();
+            model.loadUsers();
             MainMenuView menuView = new MainMenuView();
             UserDetailsView userDetailsView = new UserDetailsView();
             MyDetailsView myDetailsView = new MyDetailsView();
             new LoginRegisterController(loginView, model, menuView, userDetailsView, myDetailsView);
+            new MainMenuController(menuView, myDetailsView, loginView, model);
             loginView.setVisible(true);
         });
     }

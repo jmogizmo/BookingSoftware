@@ -45,22 +45,22 @@ public class MainMenuView extends JFrame {
         
     }
 
-    public void addCreateBookingListener(ActionListener l) {
-        createBookingButton.addActionListener(l);
+    public void addCreateBookingListener(ActionListener listener) {
+        createBookingButton.addActionListener(listener);
     }
 
-    public void addCancelBookingListener(ActionListener l) {
-        cancelBookingButton.addActionListener(l);
+    public void addCancelBookingListener(ActionListener listener) {
+        cancelBookingButton.addActionListener(listener);
     }
 
-    public void addSearchListener(ActionListener l) {
-        searchButton.addActionListener(l);
+    public void addSearchListener(ActionListener listener) {
+        searchButton.addActionListener(listener);
     }
-    public void addDetailsListener(ActionListener l){
-        detailsButton.addActionListener(l);
+    public void addDetailsListener(ActionListener listener){
+        detailsButton.addActionListener(listener);
     }
-    public void addLogoutListener(ActionListener l){
-        logoutButton.addActionListener(l);
+    public void addLogoutListener(ActionListener listener){
+        logoutButton.addActionListener(listener);
     }
     
     public void displayError(String error) {
