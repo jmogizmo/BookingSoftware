@@ -13,7 +13,7 @@ import java.sql.ResultSet; // Use java.sql.ResultSet
 public class DBManager {
     private static final String USER_NAME = "root";
     private static final String PASSWORD = "root";
-    private static final String URL = "jdbc:derby:BookingSoftwareDB";
+    private static final String URL = "jdbc:derby:BookingSoftware-Database;create=true;";
     public static Connection conn;
     
     public static void main(String[] args) {
