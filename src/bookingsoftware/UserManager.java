@@ -48,7 +48,7 @@ public class UserManager {
         return false;
     }
 
-    //placeholder method
+    //placeholder method - REPLACE FOR FINAL PROGRAM
     public void loadUsers(){
         currentUser = new userInfo(99, "admin", "admin123", "adminEmail", 123456789);
         users.put(99, currentUser);

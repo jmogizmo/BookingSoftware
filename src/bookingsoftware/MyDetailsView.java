@@ -4,14 +4,14 @@
  */
 package bookingsoftware;
 
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import Interface.*;
 
 /**
  *
@@ -31,7 +31,7 @@ public class MyDetailsView extends JFrame {
         setLayout(new GridLayout(6, 1));
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
+
         //set window position to middle of screen
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - 300 / 2, dim.height / 2 - 200 / 2);
@@ -41,7 +41,11 @@ public class MyDetailsView extends JFrame {
         add(emailLabel);
         add(phoneLabel);
         add(bookingsLabel);
-        add(backButton);
+        
+        JPanel southPanel = new JPanel();
+        southPanel.add(backButton);
+        add(southPanel, BorderLayout.SOUTH);
+        //add(backButton);
 
     }
 
