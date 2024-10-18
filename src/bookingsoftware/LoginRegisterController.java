@@ -17,15 +17,13 @@ public class LoginRegisterController {
     private UserManager model;
     private MainMenuView2 menuView;
     private UserDetailsView2 userDetailsView;
-    private MyDetailsView myDetailsView;
     public static userInfo currentUser;
     
-    public LoginRegisterController(LoginRegisterView2 view, UserManager model, MainMenuView2 menuView, UserDetailsView2 userDetailsView, MyDetailsView myDetailsView) {
+    public LoginRegisterController(LoginRegisterView2 view, UserManager model, MainMenuView2 menuView, UserDetailsView2 userDetailsView) {
         this.loginView = view;
         this.model = model;
         this.menuView = menuView;
         this.userDetailsView = userDetailsView;
-        this.myDetailsView = myDetailsView;
 
         this.loginView.addLoginListener(e -> login());
         this.loginView.addRegisterListener(e -> register());
@@ -95,12 +93,6 @@ public class LoginRegisterController {
     private void backToLogin() {
         userDetailsView.dispose();
         loginView.setVisible(true);
-    }
-    
-    //debugging method for developer
-    private void devButton(){
-        loginView.dispose();
-        menuView.setVisible(true);
     }
 
 }

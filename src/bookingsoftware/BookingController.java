@@ -11,14 +11,10 @@ import Interface.*;
  */
 public class BookingController {
     private MainMenuView2 menuView;
-    private BookingView bookingView;
-    private CancelBookingView cancelBookingView;
     private BookingInfo bookingInfo;
     
-    public BookingController(MainMenuView2 menuView, BookingView bookingView, CancelBookingView cancelBookingView, BookingInfo bookingInfo){
+    public BookingController(MainMenuView2 menuView, BookingInfo bookingInfo){
         this.menuView = menuView;
-        this.bookingView = bookingView;
-        this.cancelBookingView = cancelBookingView;
         this.bookingInfo = bookingInfo;
         this.menuView.addCreateBookingListener(e -> createBooking());
         this.menuView.addCancelBookingListener(e -> cancelBooking());

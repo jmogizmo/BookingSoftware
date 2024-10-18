@@ -55,12 +55,4 @@ public class MyDetailsView extends JFrame {
         emailLabel.setText("Email: " + email);
         phoneLabel.setText("Phone #: " + phone);
     }
-
-    public void addBackListener(ActionListener l) {
-        backButton.addActionListener(l);
-    }
-
-    public void displayError(String error) {
-        JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
-    }
 }

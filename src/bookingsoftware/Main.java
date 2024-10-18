@@ -24,13 +24,10 @@ public class Main extends JFrame {
             model.loadUsers();
             MainMenuView2 menuView = new MainMenuView2();
             UserDetailsView2 userDetailsView = new UserDetailsView2();
-            MyDetailsView myDetailsView = new MyDetailsView();
-            BookingView bookingView = new BookingView();
-            CancelBookingView cancelBookingView = new CancelBookingView();
             BookingInfo bookingInfo = new BookingInfo();
-            new LoginRegisterController(loginView, model, menuView, userDetailsView, myDetailsView);
-            new MainMenuController(menuView, myDetailsView, loginView, model);
-            new BookingController(menuView, bookingView, cancelBookingView, bookingInfo);
+            new LoginRegisterController(loginView, model, menuView, userDetailsView);
+            new MainMenuController(menuView, loginView, model);
+            new BookingController(menuView, bookingInfo);
             loginView.setVisible(true);
         });
     }

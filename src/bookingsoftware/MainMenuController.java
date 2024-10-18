@@ -14,18 +14,15 @@ import javax.swing.JOptionPane;
 public class MainMenuController<E> {
 
     private MainMenuView2 mainMenuView;
-    private MyDetailsView myDetailsView;
     //private LoginRegisterView loginView;
     private LoginRegisterView2 loginView;
     private UserManager users;
 
-    public MainMenuController(MainMenuView2 mainMenuView, MyDetailsView myDetailsView, LoginRegisterView2 loginView, UserManager users) {
+    public MainMenuController(MainMenuView2 mainMenuView, LoginRegisterView2 loginView, UserManager users) {
         this.mainMenuView = mainMenuView;
-        this.myDetailsView = myDetailsView;
         this.loginView = loginView;
         this.users = users;
         this.mainMenuView.addDetailsListener(e -> showDetails());
-        this.myDetailsView.addBackListener(e -> detailsToMenu());
         this.mainMenuView.addLogoutListener(e -> logout());
         
     }
@@ -33,12 +30,12 @@ public class MainMenuController<E> {
     private void showDetails() {
         //check if currentUser has been loaded
         if (users.currentUser != null) {
-            myDetailsView.setDetails(users.currentUser.getName(),
+            mainMenuView.setDetails(users.currentUser.getName(),
                     users.currentUser.getStudentID(),
                     users.currentUser.getEmail(),
                     users.currentUser.getPhone());
+            
             mainMenuView.jTabbedPane1.setSelectedIndex(5);
-            myDetailsView.setVisible(true);
         } else {
             mainMenuView.displayError("ERROR");
         }
@@ -58,17 +55,6 @@ public class MainMenuController<E> {
         loginView.setVisible(true);
 
     }
-
-    public void detailsToMenu() {
-
-        myDetailsView.dispose();
-        mainMenuView.setVisible(true);
-        //mainMenuView.toFront();
-        //mainMenuView.setEnabled(true);
-        //mainMenuView.toFront();
-
-    }
     
-
 
 }
