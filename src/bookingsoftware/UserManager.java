@@ -41,6 +41,7 @@ public class UserManager {
     }
 
     public boolean authenticateUser(int id, String password) {
+        loadUsers();
         if (users.containsKey(id)) {
             this.currentUser = users.get(id);
             return users.get(id).getPassword().equals(password);

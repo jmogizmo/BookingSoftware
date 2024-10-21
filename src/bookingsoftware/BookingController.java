@@ -27,7 +27,7 @@ public class BookingController {
         
     }
     
-    private void createBooking(){
+    public void createBooking(){
         //menuView.jTabbedPane2.get
         
     }

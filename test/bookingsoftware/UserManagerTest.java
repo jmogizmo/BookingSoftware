@@ -16,22 +16,22 @@ import static org.junit.Assert.*;
  * @author jmone
  */
 public class UserManagerTest {
-    
+
     public UserManagerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -41,6 +41,11 @@ public class UserManagerTest {
      */
     @Test
     public void testAddUser() {
+        //non-numeric ID/phone error
+        //incomplete fields error
+        //correct registration
+        //user already exists
+
         System.out.println("addUser");
         int id = 0;
         String name = "";
@@ -60,15 +65,19 @@ public class UserManagerTest {
      */
     @Test
     public void testAuthenticateUser() {
-        System.out.println("authenticateUser");
-        int id = 0;
-        String password = "";
         UserManager instance = new UserManager();
-        boolean expResult = false;
-        boolean result = instance.authenticateUser(id, password);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        //incomplete fields error
+        boolean result2 = instance.authenticateUser(0,"");
+        assertEquals(false,result2);
+        //wrong details
+        boolean result3 = instance.authenticateUser(99,"wrongPassword121212");
+        assertEquals(false,result3);
+        //successful login
+        boolean result4 = instance.authenticateUser(99, "admin123");
+        assertEquals(true,result4);
+
+        System.out.println("authenticateUser");
     }
 
     /**
@@ -79,8 +88,6 @@ public class UserManagerTest {
         System.out.println("loadUsers");
         UserManager instance = new UserManager();
         instance.loadUsers();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
+
 }
