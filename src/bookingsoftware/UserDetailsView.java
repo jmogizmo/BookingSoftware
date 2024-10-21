@@ -59,7 +59,7 @@ public class UserDetailsView extends JFrame {
         try {
             return Integer.parseInt(idField.getText().trim());
         } catch (NumberFormatException e) {
-            //this.displayError("Student ID must be numeric.");
+            //JOptionPane.showMessageDialog(this, "Student ID must be numeric.", "Error", JOptionPane.ERROR_MESSAGE);
             return -1;
         }
     }
@@ -68,7 +68,7 @@ public class UserDetailsView extends JFrame {
         try {
             return Long.parseLong(phoneField.getText().trim());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Phone Number must be numeric.", "Error", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(this, "Phone Number must be numeric.", "Error", JOptionPane.ERROR_MESSAGE);
             return -1;
         }
     }
