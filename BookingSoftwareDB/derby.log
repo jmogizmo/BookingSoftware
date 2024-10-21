@@ -1,19 +1,53 @@
-Mon Oct 21 15:47:53 NZDT 2024 : Apache Derby Network Server - 10.15.2.0 - (1873585) started and ready to accept connections on port 1527
+Tue Oct 22 00:29:38 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Mon Oct 21 15:49:15 NZDT 2024:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-0192-acf9-5107-ffffb2b4ceef 
-on database directory C:\Users\dante\Documents\BookingSoftware\BookingSoftware\BookingSoftwareDB\BookingSoftwareDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30946e09 
-Loaded from file:/C:/Users/dante/Downloads/db-derby-10.15.2.0-bin/db-derby-10.15.2.0-bin/lib/derby.jar
+Tue Oct 22 00:30:00 NZDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0192-aed6-feb2-ffffb7d26232 
+on database directory C:\Users\Dante Leyting\Documents\GitHub\BookingSoftware\BookingSoftwareDB\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30946e09 
+Loaded from file:/C:/Users/Dante%20Leyting/Desktop/PDC_Tutorials/db-derby-10.14.2.0-bin/db-derby-10.14.2.0-bin/lib/derby.jar
 java.vendor=Oracle Corporation
-user.dir=C:\Users\dante\Downloads\db-derby-10.15.2.0-bin\db-derby-10.15.2.0-bin
-os.name=Windows 11
+java.runtime.version=11.0.23+7-LTS-222
+user.dir=C:\Users\Dante Leyting\Desktop\PDC_Tutorials\db-derby-10.14.2.0-bin\db-derby-10.14.2.0-bin
+os.name=Windows 10
 os.arch=amd64
 os.version=10.0
-derby.system.home=C:\Users\dante\Documents\BookingSoftware\BookingSoftware\BookingSoftwareDB
+derby.system.home=C:\Users\Dante Leyting\Documents\GitHub\BookingSoftware\BookingSoftwareDB
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Mon Oct 21 15:51:44 NZDT 2024: Shutting down Derby engine
+Tue Oct 22 00:30:00 NZDT 2024:
+Shutting down instance a816c00e-0192-aed6-feb2-ffffb7d26232 on database directory C:\Users\Dante Leyting\Documents\GitHub\BookingSoftware\BookingSoftwareDB\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30946e09 
+Tue Oct 22 00:30:00 NZDT 2024 Thread[DRDAConnThread_2,5,main] (DATABASE = Database), (DRDAID = {2}), Database 'Database' shutdown.
 ----------------------------------------------------------------
-Mon Oct 21 15:51:44 NZDT 2024:
-Shutting down instance a816c00e-0192-acf9-5107-ffffb2b4ceef on database directory C:\Users\dante\Documents\BookingSoftware\BookingSoftware\BookingSoftwareDB\BookingSoftwareDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30946e09 
+Tue Oct 22 00:30:04 NZDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 6ede40af-0192-aed6-feb2-ffffb7d26232 
+on database directory C:\Users\Dante Leyting\Documents\GitHub\BookingSoftware\BookingSoftwareDB\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30946e09 
+Loaded from file:/C:/Users/Dante%20Leyting/Desktop/PDC_Tutorials/db-derby-10.14.2.0-bin/db-derby-10.14.2.0-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=11.0.23+7-LTS-222
+user.dir=C:\Users\Dante Leyting\Desktop\PDC_Tutorials\db-derby-10.14.2.0-bin\db-derby-10.14.2.0-bin
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\Dante Leyting\Documents\GitHub\BookingSoftware\BookingSoftwareDB
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Tue Oct 22 00:32:21 NZDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 0a594127-0192-aed6-feb2-ffffb7d26232 
+on database directory C:\Users\Dante Leyting\Documents\GitHub\BookingSoftware\BookingSoftwareDB\BookingSoftwareDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30946e09 
+Loaded from file:/C:/Users/Dante%20Leyting/Desktop/PDC_Tutorials/db-derby-10.14.2.0-bin/db-derby-10.14.2.0-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=11.0.23+7-LTS-222
+user.dir=C:\Users\Dante Leyting\Desktop\PDC_Tutorials\db-derby-10.14.2.0-bin\db-derby-10.14.2.0-bin
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\Dante Leyting\Documents\GitHub\BookingSoftware\BookingSoftwareDB
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Tue Oct 22 01:19:07 NZDT 2024: Shutting down Derby engine
+----------------------------------------------------------------
+Tue Oct 22 01:19:07 NZDT 2024:
+Shutting down instance 0a594127-0192-aed6-feb2-ffffb7d26232 on database directory C:\Users\Dante Leyting\Documents\GitHub\BookingSoftware\BookingSoftwareDB\BookingSoftwareDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30946e09 
+----------------------------------------------------------------
+Tue Oct 22 01:19:07 NZDT 2024:
+Shutting down instance 6ede40af-0192-aed6-feb2-ffffb7d26232 on database directory C:\Users\Dante Leyting\Documents\GitHub\BookingSoftware\BookingSoftwareDB\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30946e09 
 ----------------------------------------------------------------
