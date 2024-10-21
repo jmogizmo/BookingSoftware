@@ -17,15 +17,13 @@ public class DBManager {
 
     private static final String USER_NAME = "root";
     private static final String PASSWORD = "root";
-    private static final String URL = "jdbc:derby:BookingSoftwareDB";
+    private static final String URL = "jdbc:derby://localhost:1527/BookingSoftwareDB;create=true";
     public static Connection conn;
 
     public static void main(String[] args) {
         DBManager DB = new DBManager();
         System.out.println(DB.getConnection());
-        try {
-        Statement statement = conn.createStatement();
-        statement.executeUpdate("SET SCHEMA ROOT");
+        /*try {
 
         System.out.println("\n\n\n********DEBUGGING********");
 
@@ -35,6 +33,22 @@ public class DBManager {
             appendToField("USERINFO", " 421, 'user', 'us120', 908765476, '00000' ");
         } catch (SQLException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        String insertSQL = "CREATE TABLE Students (\n"
+                + "    student_id INTEGER PRIMARY KEY,\n"
+                + "    first_name VARCHAR(50),\n"
+                + "    email VARCHAR(50),\n"
+                + "    phone BIGINT,\n"
+                + "    password VARCHAR(7),\n"
+                + "    event BOOLEAN DEFAULT false\n"
+                + ")";
+
+        try ( PreparedStatement PS = conn.prepareStatement(insertSQL)) {
+
+            PS.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
         }
 
     }
@@ -71,18 +85,17 @@ public class DBManager {
     public static void appendToField(String table, String data) throws SQLException {
         // data e.g: " 421, 'user', 'us120', 908765476, '00000' "
         //String insertSQL = "INSERT INTO USERINFO"+ " VALUES (?,?,?,?,?)";
-        String insertSQL = "SELECT * FROM "+table;
-        
-        try (PreparedStatement PS = conn.prepareStatement(insertSQL)) {
-            
+        String insertSQL = "SELECT * FROM " + table;
+
+        try ( PreparedStatement PS = conn.prepareStatement(insertSQL)) {
+
             String[] values = data.split(", ");
             for (int i = 0; i < values.length; i++) {
                 PS.setString(i + 1, values[i].replace("'", ""));
-                
             }
-            
+
             PS.executeUpdate();
-            
+
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
