@@ -90,7 +90,7 @@ public class userInfo {
     }
 
     public String getEmail() {
-        return (email + "@email.com");
+        return (email);
     }
 
     public long getPhone() {

@@ -28,15 +28,7 @@ public class BookingController {
     }
     
     private void createBooking(){
-        //bookingView.setVisible(true);
-        
-//        menuView.remove(menuView.menuPanel);
-//        menuView.menuPanel.setVisible(false);
-//        menuView.menuText.setVisible(false);
-//        menuView.add(menuView.createBookingPanel);
-//        menuView.createBookingPanel.setVisible(true);
-//        menuView.validate();
-//        System.out.println("create booking pressed");
+        //menuView.jTabbedPane2.get
         
     }
     

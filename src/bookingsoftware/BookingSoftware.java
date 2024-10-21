@@ -297,13 +297,13 @@ public class BookingSoftware {
         }
     }
 
-//    public static void main(String[] args) throws IOException {
-//
-//        BookingSoftware x = new BookingSoftware();
-//        x.login();
-//        x.start();
-//        scan.close();
-//        System.out.println("Program stopped.");
-//    }
+    public static void main(String[] args) throws IOException {
+
+        BookingSoftware x = new BookingSoftware();
+        x.login();
+        x.start();
+        scan.close();
+        System.out.println("Program stopped.");
+    }
 
 }
