@@ -22,7 +22,6 @@ public class MainMenuController {
         this.userInfo = userInfo;
         
         this.mainMenuView.addDetailsListener(e -> showDetails());
-<<<<<<< HEAD
         this.myDetailsView.addBackListener(e -> myDetailsView.dispose());
         
     }
@@ -34,7 +33,7 @@ public class MainMenuController {
                             currentUser.getEmail(),
                             currentUser.getPhone());
         } else{
-=======
+
         this.mainMenuView.addLogoutListener(e -> logout());
         
     }
@@ -49,7 +48,6 @@ public class MainMenuController {
             
             mainMenuView.jTabbedPane1.setSelectedIndex(5);
         } else {
->>>>>>> parent of 6e0195a (Merge pull request #7 from jmogizmo/test)
             mainMenuView.displayError("ERROR");
         }
     }
@@ -57,9 +55,8 @@ public class MainMenuController {
     public void display(){
         mainMenuView.setVisible(true);
     }
-<<<<<<< HEAD
     
-=======
+
 
     public void logout() {
         mainMenuView.dispose();
@@ -73,5 +70,4 @@ public class MainMenuController {
     }
     
 
->>>>>>> parent of 6e0195a (Merge pull request #7 from jmogizmo/test)
 }
