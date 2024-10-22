@@ -4,10 +4,8 @@
  */
 package bookingsoftware;
 
-import Interface.*;
 import javax.swing.SwingUtilities;
 import javax.swing.JFrame;
-
 
 /**
  *
@@ -19,15 +17,11 @@ public class Main extends JFrame {
         //start login
 
         SwingUtilities.invokeLater(() -> {
-            LoginRegisterView2 loginView = new LoginRegisterView2();
+            LoginRegisterView loginView = new LoginRegisterView();
             UserManager model = new UserManager();
-            model.loadUsers();
-            MainMenuView2 menuView = new MainMenuView2();
-            UserDetailsView2 userDetailsView = new UserDetailsView2();
-            BookingInfo bookingInfo = new BookingInfo();
+            MainMenuView menuView = new MainMenuView();
+            UserDetailsView userDetailsView = new UserDetailsView();
             new LoginRegisterController(loginView, model, menuView, userDetailsView);
-            new MainMenuController(menuView, loginView, model);
-            new BookingController(menuView, bookingInfo);
             loginView.setVisible(true);
         });
     }

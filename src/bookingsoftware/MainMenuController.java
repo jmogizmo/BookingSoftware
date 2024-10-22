@@ -4,56 +4,41 @@
  */
 package bookingsoftware;
 
-import Interface.*;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author jmone
  */
-public class MainMenuController<E> {
-
-    private MainMenuView2 mainMenuView;
-    //private LoginRegisterView loginView;
-    private LoginRegisterView2 loginView;
+public class MainMenuController {
+    private MainMenuView mainMenuView;
+    private MyDetailsView myDetailsView;
+    private userInfo userInfo;
     private UserManager users;
-
-    public MainMenuController(MainMenuView2 mainMenuView, LoginRegisterView2 loginView, UserManager users) {
+    
+    public MainMenuController(MainMenuView mainMenuView, MyDetailsView myDetailsView, userInfo userInfo){
         this.mainMenuView = mainMenuView;
-        this.loginView = loginView;
-        this.users = users;
+        this.myDetailsView = myDetailsView;
+        this.userInfo = userInfo;
+        
         this.mainMenuView.addDetailsListener(e -> showDetails());
-        this.mainMenuView.addLogoutListener(e -> logout());
-
+        this.myDetailsView.addBackListener(e -> myDetailsView.dispose());
+        
     }
-
-    private void showDetails() {
-        //check if currentUser has been loaded
-        if (users.currentUser != null) {
-            mainMenuView.setDetails(users.currentUser.getName(),
-                    users.currentUser.getStudentID(),
-                    users.currentUser.getEmail(),
-                    users.currentUser.getPhone());
-
-            mainMenuView.jTabbedPane1.setSelectedIndex(5);
-        } else {
+    
+    private void showDetails(){
+        if(currentUser != null){
+            myDetailsView.setDetails(currentUser.getName(),
+                            currentUser.getStudentID(), 
+                            currentUser.getEmail(),
+                            currentUser.getPhone());
+        } else{
             mainMenuView.displayError("ERROR");
         }
     }
-
-    public void display() {
+    
+    public void display(){
         mainMenuView.setVisible(true);
     }
-
-    public void logout() {
-        mainMenuView.dispose();
-        //clear user details
-        users.currentUser = new userInfo();
-        loginView.IDField.setText("");
-        loginView.passwordField.setText("");
-
-        loginView.setVisible(true);
-
-    }
-
+    
 }

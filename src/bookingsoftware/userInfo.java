@@ -11,7 +11,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -28,7 +27,6 @@ public class userInfo {
     private String email;
     private long phone;
     private int studentID;
-    private ArrayList<String> bookingList;
 
     public static String usersTXTpath = "./resources/users.txt";
 
@@ -76,21 +74,13 @@ public class userInfo {
         this.email = email;
         this.phone = phone;
     }
-    
-    public void addBooking(String booking){
-        bookingList.add(booking);
-    }
-    
-    public ArrayList<String> getBookingList(){
-        return bookingList;
-    }
 
     public String getName() {
         return name;
     }
 
     public String getEmail() {
-        return (email);
+        return (email + "@email.com");
     }
 
     public long getPhone() {
