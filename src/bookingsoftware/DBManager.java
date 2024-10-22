@@ -21,25 +21,16 @@ public class DBManager {
     public static Connection conn;
 
     public static void main(String[] args) {
-        try {
-            // Load the Derby embedded driver
-            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-            System.out.println("Derby embedded driver loaded successfully!");
-        } catch (ClassNotFoundException e) {
-            System.err.println("Failed to load the Derby embedded driver!");
-            e.printStackTrace();
-        }
-
         DBManager DB = new DBManager();
         System.out.println(DB.getConnection());
         try {
-            Statement statement = conn.createStatement();
-            statement.executeUpdate("SET SCHEMA ROOT");
+        Statement statement = conn.createStatement();
+        statement.executeUpdate("SET SCHEMA ROOT");
 
-            System.out.println("\n\n\n********DEBUGGING********");
+        System.out.println("\n\n\n********DEBUGGING********");
 
-            System.out.println("ADD USER");
-
+        System.out.println("ADD USER");
+        
             //System.out.println("USERINFO" + " 421, 'user', 'us120', 908765476, '00000' ");
             appendToField("USERINFO", " 421, 'user', 'us120', 908765476, '00000' ");
         } catch (SQLException ex) {
@@ -80,18 +71,18 @@ public class DBManager {
     public static void appendToField(String table, String data) throws SQLException {
         // data e.g: " 421, 'user', 'us120', 908765476, '00000' "
         //String insertSQL = "INSERT INTO USERINFO"+ " VALUES (?,?,?,?,?)";
-        String insertSQL = "SELECT * FROM " + table;
-
-        try ( PreparedStatement PS = conn.prepareStatement(insertSQL)) {
-
+        String insertSQL = "SELECT * FROM "+table;
+        
+        try (PreparedStatement PS = conn.prepareStatement(insertSQL)) {
+            
             String[] values = data.split(", ");
             for (int i = 0; i < values.length; i++) {
                 PS.setString(i + 1, values[i].replace("'", ""));
-
+                
             }
-
+            
             PS.executeUpdate();
-
+            
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
