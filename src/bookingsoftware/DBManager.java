@@ -8,6 +8,8 @@ import java.sql.ResultSet; // Use java.sql.ResultSet
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.PreparedStatement;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -31,12 +33,9 @@ public class DBManager {
 
             //System.out.println("USERINFO" + " 421, 'user', 'us120', 908765476, '00000' ");
             //appendToField("USERINFO", "421, 'user', 'us120', 908765476, '00000', false ");
-            
-            
 //            userInfo user = new userInfo();
 //            user = returnUserInfo(19);
 //            System.out.println(user.toString());
-
         } catch (SQLException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -87,9 +86,8 @@ public class DBManager {
     }
 
     public userInfo returnUserInfo(String field, String target) throws SQLException {
-        
-        // E.G: FIELD = FIRST_NAME TARGET = martin
 
+        // E.G: FIELD = FIRST_NAME TARGET = martin
         ResultSet rs = null;
         userInfo result = null;
         String command = "SELECT * FROM USERINFO WHERE" + field + "=" + target;
@@ -132,7 +130,6 @@ public class DBManager {
     public userInfo returnUserInfo(int target) throws SQLException {
 
         // E.G: FIELD = studentID TARGET = 14
-
         ResultSet rs = null;
         userInfo result = null;
         String command = "SELECT * FROM USERINFO WHERE STUDENT_ID = " + target;
@@ -175,11 +172,49 @@ public class DBManager {
         }
         return result;
     }
-    
+
+    public Map returnAllUsers() throws SQLException {
+
+        Map<Integer, userInfo> userMap = new HashMap<>();
+        ResultSet rs = null;
+        String command = "SELECT * FROM USERINFO";
+        Statement statement = conn.createStatement();
+
+        try {
+            rs = statement.executeQuery(command);
+            while (rs.next()) {
+                userInfo result = new userInfo();
+
+                int STUDENT_ID = rs.getInt("STUDENT_ID");
+                String FIRST_NAME = rs.getString("FIRST_NAME");
+                String EMAIL = rs.getString("EMAIL");
+                long PHONE = rs.getLong("PHONE");
+                String PASSWORD = rs.getString("PASSWORD");
+
+                result.setStudentID(STUDENT_ID);
+                result.setName(FIRST_NAME);
+                result.setEmail(EMAIL);
+                result.setPhone(PHONE);
+                result.setPassword(PASSWORD);
+                
+                userMap.put(STUDENT_ID, result);
+                
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        } finally {
+            if (rs != null) rs.close();
+            if (statement != null) statement.close();
+            if (conn != null) conn.close();
+        }
+
+        return userMap;
+    }
+
     public boolean returnisBooked(String field, float time) {
         return false;
     }
-    
+
     public boolean returnisBooked(float time) {
         return false;
     }
