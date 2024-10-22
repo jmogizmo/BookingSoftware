@@ -9,35 +9,36 @@ package bookingsoftware;
  * @author jmone
  */
 public class timeSlot {
-    private String time;
+    private double time;
     //date format: DD-MM-YY
     private String date;
     
     public timeSlot()
     {
-        this.time = "00:00";
+        this.time = 0.0;
         this.date = "00-00-00";
     }
     
-        public timeSlot(String time)
-    {
-        this.time = time;
-        this.date = "01-01-24";
+    public String toString() {
+        String string = "empty";
+        
+        
+        
+        return string;
     }
-         
-    public timeSlot(String time, String date)
-    {
-        this.time = time;
-        this.date = date;
-    }
-    
-    
-    
+
     /**
-     * @return the startTime
+     * @return the time
      */
-    public String getTime() {
+    public double getTime() {
         return time;
+    }
+
+    /**
+     * @param time the time to set
+     */
+    public void setTime(double time) {
+        this.time = time;
     }
 
     /**
@@ -46,18 +47,6 @@ public class timeSlot {
     public String getDate() {
         return date;
     }
-    
-    //returns the duration of the timeslot in hours
-    public String getDuration(){
-        return "30 Minutes";
-    }
-
-    /**
-     * @param time the time to set
-     */
-    public void setTime(String time) {
-        this.time = time;
-    }
 
     /**
      * @param date the date to set
@@ -65,4 +54,6 @@ public class timeSlot {
     public void setDate(String date) {
         this.date = date;
     }
+    
+    
 }

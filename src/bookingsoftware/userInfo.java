@@ -38,7 +38,8 @@ public class userInfo {
         return "Name: " + this.name + "\n"
                 + "Student ID: " + this.studentID + "\n"
                 + "Email: " + this.email + "\n"
-                + "Phone Num: " + this.phone;
+                + "Phone Num: " + this.phone + "\n"
+                + "Password: " + this.password;
     }
 
     public userInfo(int id, String password) {
