@@ -20,15 +20,38 @@ public class BookingController {
         this.menuView.addCancelBookingListener(e -> cancelBooking());
     }
     
+    public void showMyBookings(int ID){
+        //read all bookings belonging to a specific studentID
+    }
+    
+    public void showTimes(){
+        //read times from bookings database
+        //if booked, make the time red
+        //if available, make the time green
+    }
+    
     public void cancelBooking(){
-//        menuView.dispose();
-//        cancelBookingView.setVisible(true);
+        
         
         
     }
     
-    private void createBooking(){
-        //menuView.jTabbedPane2.get
+    public void createBooking(){
+        int building = menuView.buildingTabs.getSelectedIndex();
+        switch(building){
+            //wg
+            case 0:
+                
+                break;
+            //wz
+            case 1:
+                
+                break;
+            //wa
+            case 2:
+                
+                break;
+        }
         
     }
     

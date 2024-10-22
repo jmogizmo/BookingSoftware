@@ -51,7 +51,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        buildingTabs = new javax.swing.JTabbedPane();
         jPanel9 = new javax.swing.JPanel();
         wgRoom1 = new javax.swing.JRadioButton();
         wgRoom2 = new javax.swing.JRadioButton();
@@ -286,7 +286,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("WG", jPanel9);
+        buildingTabs.addTab("WG", jPanel9);
 
         wzRoom1.setText("301");
 
@@ -305,7 +305,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
                 .addComponent(wzRoom2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(wzRoom3)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,7 +318,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("WZ", jPanel10);
+        buildingTabs.addTab("WZ", jPanel10);
 
         waRoom1.setText("203");
         waRoom1.addActionListener(new java.awt.event.ActionListener() {
@@ -355,7 +355,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("WA", jPanel11);
+        buildingTabs.addTab("WA", jPanel11);
 
         jLabel11.setText("Choose Building:");
 
@@ -396,7 +396,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(jLabel12))
                         .addGap(18, 18, 18)
-                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buildingTabs, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jButton2))
@@ -437,7 +437,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
                                 .addComponent(jLabel11)
                                 .addGap(38, 38, 38)
                                 .addComponent(jLabel12))
-                            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(buildingTabs, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -846,6 +846,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookButton;
     private javax.swing.JList<String> bookingList;
+    public javax.swing.JTabbedPane buildingTabs;
     private javax.swing.ButtonGroup buttonGroup8;
     private javax.swing.ButtonGroup buttonGroup9;
     private javax.swing.JButton cancelBookingButton;
@@ -901,7 +902,6 @@ public class MainMenuView2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     public javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JButton logoutButton;
     public javax.swing.JLabel nameLabel;
     private javax.swing.JLabel phoneLabel;

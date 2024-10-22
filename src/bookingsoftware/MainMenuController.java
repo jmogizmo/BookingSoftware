@@ -24,7 +24,7 @@ public class MainMenuController<E> {
         this.users = users;
         this.mainMenuView.addDetailsListener(e -> showDetails());
         this.mainMenuView.addLogoutListener(e -> logout());
-        
+
     }
 
     private void showDetails() {
@@ -34,7 +34,7 @@ public class MainMenuController<E> {
                     users.currentUser.getStudentID(),
                     users.currentUser.getEmail(),
                     users.currentUser.getPhone());
-            
+
             mainMenuView.jTabbedPane1.setSelectedIndex(5);
         } else {
             mainMenuView.displayError("ERROR");
@@ -48,13 +48,12 @@ public class MainMenuController<E> {
     public void logout() {
         mainMenuView.dispose();
         //clear user details
-        users.currentUser = null;
+        users.currentUser = new userInfo();
         loginView.IDField.setText("");
         loginView.passwordField.setText("");
 
         loginView.setVisible(true);
 
     }
-    
 
 }
