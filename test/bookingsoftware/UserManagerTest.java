@@ -10,12 +10,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.util.Random;
 
 /**
  *
  * @author jmone
  */
 public class UserManagerTest {
+
+    Random rand = new Random();
 
     public UserManagerTest() {
     }
@@ -41,23 +44,23 @@ public class UserManagerTest {
      */
     @Test
     public void testAddUser() {
-        //non-numeric ID/phone error
-        //incomplete fields error
-        //correct registration
-        //user already exists
-
-        System.out.println("addUser");
-        int id = 0;
-        String name = "";
-        String password = "";
-        String email = "";
-        long phone = 0L;
         UserManager instance = new UserManager();
-        int expResult = 0;
-        int result = instance.addUser(id, name, password, email, phone);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.loadUsers();
+        //incomplete fields error
+        int result1 = instance.addUser(0, "", "", "email", 010101);
+        int expResult1 = 0;
+        assertEquals(expResult1, result1);
+        //correct registration
+        int randomID = 100000 + rand.nextInt(900000);
+        
+        int result2 = instance.addUser(randomID, "randomName", "randomPassword", "randomEmail@gmail.com", 88337475);
+        int expResult2 = 1;
+        assertEquals(expResult2,result2);
+        
+        //user already exists
+        int result3 = instance.addUser(99, "admin", "admin123", "adminEmail@gmail.com", 1234567890);
+        int expResult3 = -1;
+        assertEquals(expResult3, result3);
     }
 
     /**
@@ -68,14 +71,14 @@ public class UserManagerTest {
         UserManager instance = new UserManager();
 
         //incomplete fields error
-        boolean result2 = instance.authenticateUser(0,"");
-        assertEquals(false,result2);
+        boolean result2 = instance.authenticateUser(0, "");
+        assertEquals(false, result2);
         //wrong details
-        boolean result3 = instance.authenticateUser(99,"wrongPassword121212");
-        assertEquals(false,result3);
+        boolean result3 = instance.authenticateUser(99, "wrongPassword121212");
+        assertEquals(false, result3);
         //successful login
         boolean result4 = instance.authenticateUser(99, "admin123");
-        assertEquals(true,result4);
+        assertEquals(true, result4);
 
         System.out.println("authenticateUser");
     }
