@@ -26,27 +26,12 @@ public class DBManager {
     public static void main(String[] args) {
         DBManager DB = new DBManager();
         System.out.println(DB.getConnection());
-        try {
-
-            System.out.println("\n\n\n********TEST********");
-
-            System.out.println("READ BOOKINGS");
-
-            //System.out.println("USERINFO" + " 421, 'user', 'us120', 908765476, '00000' ");
-            //appendToField("USERINFO", "421, 'user', 'us120', 908765476, '00000', false ");
-//            userInfo user = new userInfo();
-//            user = returnUserInfo(19);
-//            System.out.println(user.toString());
-            //System.out.println("Result: "+returnisBooked("12:00","WG", 402,"20-08-2024"));
-//            createBooking(user, "WG", "403", "14:00", "21-08-2024");
-
-            for (String s : returnUserBookings(19)) {
-                System.out.println(s);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
     }
 
@@ -135,7 +120,7 @@ public class DBManager {
         return result;
     }
 
-    public static userInfo returnUserInfo(int target) throws SQLException {
+    public userInfo returnUserInfo(int target) throws SQLException {
 
         // E.G: FIELD = studentID TARGET = 14
         ResultSet rs = null;
@@ -274,7 +259,7 @@ public class DBManager {
         }
     }
 
-    public static boolean createBooking(userInfo user, String buildingCode, String roomCode, String time, String date) throws SQLException {
+    public boolean createBooking(userInfo user, String buildingCode, String roomCode, String time, String date) throws SQLException {
 
         String booking = user.getStudentID() + ", '" + user.getName()
                 + "', '" + buildingCode + "', " + roomCode + ", '" + date + "', '" + time + "'";
@@ -294,11 +279,21 @@ public class DBManager {
         return false;
     }
 
-    public boolean cancelBooking() {
-        return false;
+    public int cancelBooking(int BOOKINGID) {
+        String deleteSQL = "DELETE FROM BOOKEDROOMS WHERE BOOKING_ID = "+BOOKINGID;
+        
+        try ( PreparedStatement PS = conn.prepareStatement(deleteSQL)) {
+
+            PS.executeUpdate();
+            return 0;// Deleted
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return -1;// error
     }
 
-    public static ArrayList<String> returnUserBookings(int studentID) throws SQLException {
+    public ArrayList<String> returnUserBookings(int studentID) throws SQLException {
 
         ResultSet rs = null;
         ArrayList<String> result = new ArrayList<String>();
