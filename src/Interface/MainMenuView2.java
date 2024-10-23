@@ -7,6 +7,7 @@ package Interface;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author jmone
@@ -213,8 +214,6 @@ public class MainMenuView2 extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         jLabel1.setText("Welcome to the AUT Room Booking Software");
-
-        jLabel14.setIcon(new javax.swing.ImageIcon("C:\\Users\\jmone\\Downloads\\autbuilding (1).jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -633,8 +632,6 @@ public class MainMenuView2 extends javax.swing.JFrame {
         emailLabel.setText("jLabel13");
 
         phoneLabel.setText("jLabel14");
-
-        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\jmone\\Downloads\\avatar.jpg")); // NOI18N
 
         jLabel15.setText("My Bookings:");
 
