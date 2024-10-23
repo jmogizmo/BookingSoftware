@@ -33,11 +33,11 @@ public class DBManager {
 
             //System.out.println("USERINFO" + " 421, 'user', 'us120', 908765476, '00000' ");
             //appendToField("USERINFO", "421, 'user', 'us120', 908765476, '00000', false ");
-//            userInfo user = new userInfo();
-//            user = returnUserInfo(19);
-//            System.out.println(user.toString());
-
-                System.out.println("Result: "+returnisBooked("12:00","WG", 402,"20-08-2024"));
+            userInfo user = new userInfo();
+            user = returnUserInfo(19);
+            System.out.println(user.toString());
+            //System.out.println("Result: "+returnisBooked("12:00","WG", 402,"20-08-2024"));
+            createBooking(user, "WG", "403", "14:00", "21-08-2024");
         } catch (SQLException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -129,7 +129,7 @@ public class DBManager {
         return result;
     }
 
-    public userInfo returnUserInfo(int target) throws SQLException {
+    public static userInfo returnUserInfo(int target) throws SQLException {
 
         // E.G: FIELD = studentID TARGET = 14
         ResultSet rs = null;
@@ -161,16 +161,16 @@ public class DBManager {
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (statement != null) {
-                statement.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
+//        } finally {
+//            if (rs != null) {
+//                rs.close();
+//            }
+//            if (statement != null) {
+//                statement.close();
+//            }
+//            if (conn != null) {
+//                conn.close();
+//            }
         }
         return result;
     }
@@ -198,36 +198,42 @@ public class DBManager {
                 result.setEmail(EMAIL);
                 result.setPhone(PHONE);
                 result.setPassword(PASSWORD);
-                
+
                 userMap.put(STUDENT_ID, result);
-                
+
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         } finally {
-            if (rs != null) rs.close();
-            if (statement != null) statement.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
 
         return userMap;
     }
 
-    public static int returnisBooked(String time, String building, int room, String date) throws SQLException {
+    public int returnisBooked(String time, String building, int room, String date) throws SQLException {
         ResultSet rs = null;
-        String command = "SELECT \""+time+"\" FROM BOOKINGS WHERE "
+        String command = "SELECT \"" + time + "\" FROM BOOKINGS WHERE "
                 + "BUILDINGCODE = '" + building
                 + "' AND ROOMCODE = " + room
-                + " AND BOOKINGDATE = '" + date+"'";
+                + " AND BOOKINGDATE = '" + date + "'";
         Statement statement = conn.createStatement();
         int booked = -1; // Error occurred:
 
         try {
             rs = statement.executeQuery(command);
             if (rs.next()) {
-                
+
                 boolean isBooked = rs.getBoolean(time);
-                
+
                 if (isBooked) {
                     booked = 1; // TimeSlot is Booked
                 } else if (!isBooked) {
@@ -237,12 +243,56 @@ public class DBManager {
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         } finally {
-            if (rs != null) rs.close();
-            if (statement != null) statement.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return booked;
     }
 
+    public void removeFromField(String table, String data) {
+        String deleteSQL = "DELETE FROM " + table + " WHERE " + data;
+
+        try ( PreparedStatement PS = conn.prepareStatement(deleteSQL)) {
+
+            PS.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    public static boolean createBooking(userInfo user, String buildingCode, String roomCode, String time, String date) throws SQLException {
+        
+        String booking =  user.getStudentID() + ", '" + user.getName()
+                + "', '" + buildingCode + "', " + roomCode + ", '" + date + "', '" + time + "'";
+        
+        String createSQL = "INSERT INTO BOOKEDROOMS (STUDENT_ID, FIRST_NAME, BUILDINGCODE, ROOMCODE, DATES, TIMES) VALUES "
+                + "(" + booking + ")";
+        
+        System.out.println("#######################\n" + booking + "\n#######################");
+        try ( PreparedStatement PS = conn.prepareStatement(createSQL)) {
+
+            PS.executeUpdate();
+            return true;
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return false;
+    }
+
+    public boolean cancelBooking() {
+        return false;
+    }
     
+    public boolean returnUserBookings() {
+        return false;
+    }
 }

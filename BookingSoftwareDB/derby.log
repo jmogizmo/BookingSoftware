@@ -1,7 +1,7 @@
-Tue Oct 22 13:33:43 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+Tue Oct 22 23:18:16 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Tue Oct 22 13:33:44 NZDT 2024:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0192-b1a4-d9dc-ffffb7d26232 
+Tue Oct 22 23:18:16 NZDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0192-b3bc-03a6-ffffb7d26232 
 on database directory C:\Users\Dante Leyting\Documents\GitHub\BookingSoftware\BookingSoftwareDB\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30946e09 
 Loaded from file:/C:/Users/Dante%20Leyting/Desktop/PDC_Tutorials/db-derby-10.14.2.0-bin/db-derby-10.14.2.0-bin/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -12,9 +12,3 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\Dante Leyting\Documents\GitHub\BookingSoftware\BookingSoftwareDB
 Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Tue Oct 22 14:45:59 NZDT 2024: Shutting down Derby engine
-----------------------------------------------------------------
-Tue Oct 22 14:45:59 NZDT 2024:
-Shutting down instance a816c00e-0192-b1a4-d9dc-ffffb7d26232 on database directory C:\Users\Dante Leyting\Documents\GitHub\BookingSoftware\BookingSoftwareDB\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30946e09 
-----------------------------------------------------------------
