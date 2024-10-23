@@ -5,16 +5,12 @@
             <url>src/bookingsoftware/DBManager.java</url>
             <bookmark id="1">
                 <name/>
-                <line>273</line>
+                <line>279</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Dante%20Leyting/Documents/GitHub/BookingSoftware/resources/users.txt</file>
-            <file>file:/C:/Users/Dante%20Leyting/Documents/GitHub/BookingSoftware/src/bookingsoftware/DBManager.java</file>
-            <file>file:/C:/Users/Dante%20Leyting/Documents/GitHub/BookingSoftware/src/bookingsoftware/userInfo.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

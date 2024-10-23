@@ -8,6 +8,7 @@ import java.sql.ResultSet; // Use java.sql.ResultSet
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,11 +34,16 @@ public class DBManager {
 
             //System.out.println("USERINFO" + " 421, 'user', 'us120', 908765476, '00000' ");
             //appendToField("USERINFO", "421, 'user', 'us120', 908765476, '00000', false ");
-            userInfo user = new userInfo();
-            user = returnUserInfo(19);
-            System.out.println(user.toString());
+//            userInfo user = new userInfo();
+//            user = returnUserInfo(19);
+//            System.out.println(user.toString());
             //System.out.println("Result: "+returnisBooked("12:00","WG", 402,"20-08-2024"));
-            createBooking(user, "WG", "403", "14:00", "21-08-2024");
+//            createBooking(user, "WG", "403", "14:00", "21-08-2024");
+
+            for (String s : returnUserBookings(19)) {
+                System.out.println(s);
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -204,16 +210,16 @@ public class DBManager {
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (statement != null) {
-                statement.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
+//        } finally {
+//            if (rs != null) {
+//                rs.close();
+//            }
+//            if (statement != null) {
+//                statement.close();
+//            }
+//            if (conn != null) {
+//                conn.close();
+//            }
         }
 
         return userMap;
@@ -242,16 +248,16 @@ public class DBManager {
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (statement != null) {
-                statement.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
+//        } finally {
+//            if (rs != null) {
+//                rs.close();
+//            }
+//            if (statement != null) {
+//                statement.close();
+//            }
+//            if (conn != null) {
+//                conn.close();
+//            }
         }
         return booked;
     }
@@ -269,13 +275,13 @@ public class DBManager {
     }
 
     public static boolean createBooking(userInfo user, String buildingCode, String roomCode, String time, String date) throws SQLException {
-        
-        String booking =  user.getStudentID() + ", '" + user.getName()
+
+        String booking = user.getStudentID() + ", '" + user.getName()
                 + "', '" + buildingCode + "', " + roomCode + ", '" + date + "', '" + time + "'";
-        
+
         String createSQL = "INSERT INTO BOOKEDROOMS (STUDENT_ID, FIRST_NAME, BUILDINGCODE, ROOMCODE, DATES, TIMES) VALUES "
                 + "(" + booking + ")";
-        
+
         System.out.println("#######################\n" + booking + "\n#######################");
         try ( PreparedStatement PS = conn.prepareStatement(createSQL)) {
 
@@ -291,8 +297,36 @@ public class DBManager {
     public boolean cancelBooking() {
         return false;
     }
-    
-    public boolean returnUserBookings() {
-        return false;
+
+    public static ArrayList<String> returnUserBookings(int studentID) throws SQLException {
+
+        ResultSet rs = null;
+        ArrayList<String> result = new ArrayList<String>();
+        String command = "SELECT * FROM BOOKEDROOMS WHERE STUDENT_ID = " + studentID;
+        Statement statement = conn.createStatement();
+
+        try {
+            rs = statement.executeQuery(command);
+
+            //System.out.println("BOOKINGS FOR : " + studentID);
+
+            while (rs.next()) {
+
+                int BOOKING_ID = rs.getInt("BOOKING_ID");
+                String FIRST_NAME = rs.getString("FIRST_NAME");
+                String BUILDINGCODE = rs.getString("BUILDINGCODE");
+                String ROOMCODE = rs.getString("ROOMCODE");
+                String DATES = rs.getString("DATES");
+                String TIMES = rs.getString("TIMES");
+
+                String data = BOOKING_ID + " " + FIRST_NAME + " " + BUILDINGCODE + " " + ROOMCODE + " " + DATES + " " + TIMES;
+
+                result.add(data);
+
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return result;
     }
 }
