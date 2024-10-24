@@ -35,7 +35,13 @@ public class LoginRegisterController {
             }
         });
         this.loginView.addRegisterListener(e -> register());
-        this.userDetailsView.addSaveDetailsListener(e -> saveUserDetails());
+        this.userDetailsView.addSaveDetailsListener(e -> {
+            try {
+                saveUserDetails();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginRegisterController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         this.userDetailsView.addBackListener(e -> backToLogin());
         //this.loginView.addDevListener(e -> devButton());
     }
@@ -63,7 +69,7 @@ public class LoginRegisterController {
         userDetailsView.setVisible(true);
     }
 
-    private void saveUserDetails() {
+    private void saveUserDetails() throws SQLException {
         
         int id = userDetailsView.getID();
         String name = userDetailsView.getName();

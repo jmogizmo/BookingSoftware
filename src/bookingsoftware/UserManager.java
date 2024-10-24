@@ -18,7 +18,7 @@ public class UserManager {
     public userInfo currentUser = null;
     //DBManager db = new DBManager();
 
-    public int addUser(int id, String name, String password, String email, long phone) {
+    public int addUser(int id, String name, String password, String email, long phone) throws SQLException {
         //some fields are empty
         if (id == 0 || name.equals("") || password.equals("") || email.equals("") || phone == 0) {
             System.out.println("addUser returned false. empty fields");
@@ -37,6 +37,10 @@ public class UserManager {
         if (!users.containsKey(id)) {
             currentUser = new userInfo(id, name, password, email, phone);
             users.put(id, currentUser);
+                // (student_id, first_name, email, phone, password, event)
+            String appendUser = id + ", '"+name+ "', '"+email+ "', "+phone+ ", '"+password+ "', false";
+            
+            DBManager.appendToField("USERINFO", appendUser);
             System.out.println("user added. returned true");
             return 1;
         }
