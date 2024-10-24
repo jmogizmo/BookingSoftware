@@ -17,7 +17,7 @@ public class Main extends JFrame {
 
     public static void main(String[] args) {
         //start login
-
+        
         SwingUtilities.invokeLater(() -> {
             LoginRegisterView2 loginView = new LoginRegisterView2();
             UserManager model = new UserManager();

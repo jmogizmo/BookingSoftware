@@ -26,13 +26,6 @@ public class DBManager {
     public static void main(String[] args) {
         DBManager DB = new DBManager();
         System.out.println(DB.getConnection());
-//        try {
-//
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
     }
 
     public DBManager() {
@@ -43,7 +36,7 @@ public class DBManager {
         return this.conn;
     }
 
-    public void establishConnection() {
+    public static void establishConnection() {
         if (this.conn == null) {
             try {
                 conn = DriverManager.getConnection(URL, USER_NAME, PASS);
@@ -54,7 +47,7 @@ public class DBManager {
         }
     }
 
-    public void closeConnections() {
+    public static void closeConnections() {
         if (conn != null) {
             try {
                 conn.close();
@@ -64,7 +57,7 @@ public class DBManager {
         }
     }
 
-    public void appendToField(String table, String data) throws SQLException {
+    public static void appendToField(String table, String data) throws SQLException {
 
         String insertSQL = "INSERT INTO " + table + " VALUES (" + data + ")";
 
@@ -78,7 +71,7 @@ public class DBManager {
         }
     }
 
-    public userInfo returnUserInfo(String field, String target) throws SQLException {
+    public static userInfo returnUserInfo(String field, String target) throws SQLException {
 
         // E.G: FIELD = FIRST_NAME TARGET = martin
         ResultSet rs = null;
@@ -120,7 +113,7 @@ public class DBManager {
         return result;
     }
 
-    public userInfo returnUserInfo(int target) throws SQLException {
+    public static userInfo returnUserInfo(int target) throws SQLException {
 
         // E.G: FIELD = studentID TARGET = 14
         ResultSet rs = null;
@@ -166,7 +159,7 @@ public class DBManager {
         return result;
     }
 
-    public Map returnAllUsers() throws SQLException {
+    public static Map returnAllUsers() throws SQLException {
 
         Map<Integer, userInfo> userMap = new HashMap<>();
         ResultSet rs = null;
@@ -210,7 +203,7 @@ public class DBManager {
         return userMap;
     }
 
-    public int returnisBooked(String time, String building, int room, String date) throws SQLException {
+    public static int returnisBooked(String time, String building, int room, String date) throws SQLException {
         ResultSet rs = null;
         String command = "SELECT \"" + time + "\" FROM BOOKINGS WHERE "
                 + "BUILDINGCODE = '" + building
@@ -247,7 +240,7 @@ public class DBManager {
         return booked;
     }
 
-    public void removeFromField(String table, String data) {
+    public static void removeFromField(String table, String data) {
         String deleteSQL = "DELETE FROM " + table + " WHERE " + data;
 
         try ( PreparedStatement PS = conn.prepareStatement(deleteSQL)) {
@@ -259,7 +252,7 @@ public class DBManager {
         }
     }
 
-    public boolean createBooking(userInfo user, String buildingCode, String roomCode, String time, String date) throws SQLException {
+    public static boolean createBooking(userInfo user, String buildingCode, String roomCode, String time, String date) throws SQLException {
 
         String booking = user.getStudentID() + ", '" + user.getName()
                 + "', '" + buildingCode + "', " + roomCode + ", '" + date + "', '" + time + "'";
@@ -279,7 +272,7 @@ public class DBManager {
         return false;
     }
 
-    public int cancelBooking(int BOOKINGID) {
+    public static int cancelBooking(int BOOKINGID) {
         String deleteSQL = "DELETE FROM BOOKEDROOMS WHERE BOOKING_ID = "+BOOKINGID;
         
         try ( PreparedStatement PS = conn.prepareStatement(deleteSQL)) {
@@ -293,7 +286,7 @@ public class DBManager {
         return -1;// error
     }
 
-    public ArrayList<String> returnUserBookings(int studentID) throws SQLException {
+    public static ArrayList<String> returnUserBookings(int studentID) throws SQLException {
 
         ResultSet rs = null;
         ArrayList<String> result = new ArrayList<String>();
