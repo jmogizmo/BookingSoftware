@@ -36,7 +36,7 @@ public class DBManager {
         return this.conn;
     }
 
-    public static void establishConnection() {
+    public void establishConnection() {
         if (this.conn == null) {
             try {
                 conn = DriverManager.getConnection(URL, USER_NAME, PASS);
