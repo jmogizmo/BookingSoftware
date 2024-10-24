@@ -29,22 +29,24 @@ public class DBManager {
     }
 
     public DBManager() {
-        establishConnection();
+        
     }
 
     public Connection getConnection() {
         return this.conn;
     }
 
-    public void establishConnection() {
-        if (this.conn == null) {
+    public static int establishConnection() {
+        if (conn == null) {
             try {
                 conn = DriverManager.getConnection(URL, USER_NAME, PASS);
                 System.out.println(URL + " Connection is successful.");
+                return 0;
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
         }
+        return -1;
     }
 
     public static void closeConnections() {
@@ -159,7 +161,7 @@ public class DBManager {
         return result;
     }
 
-    public static Map returnAllUsers() throws SQLException {
+    public static Map<Integer, userInfo> returnAllUsers() throws SQLException {
 
         Map<Integer, userInfo> userMap = new HashMap<>();
         ResultSet rs = null;
@@ -188,16 +190,7 @@ public class DBManager {
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-//        } finally {
-//            if (rs != null) {
-//                rs.close();
-//            }
-//            if (statement != null) {
-//                statement.close();
-//            }
-//            if (conn != null) {
-//                conn.close();
-//            }
+
         }
 
         return userMap;
