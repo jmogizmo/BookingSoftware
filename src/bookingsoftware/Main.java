@@ -18,7 +18,7 @@ public class Main extends JFrame {
     public static void main(String[] args) {
         //start login
         
-        DBManager.establishConnection();
+        //DBManager.establishConnection();
         
         SwingUtilities.invokeLater(() -> {
             LoginRegisterView2 loginView = new LoginRegisterView2();
