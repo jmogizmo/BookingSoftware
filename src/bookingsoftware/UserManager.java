@@ -14,7 +14,7 @@ import java.util.Map;
 public class UserManager {
 
     private Map<Integer, userInfo> users = new HashMap<>();
-    public userInfo currentUser = null;
+    public static userInfo currentUser = null;
 
     
     public int addUser(int id, String name, String password, String email, long phone) {

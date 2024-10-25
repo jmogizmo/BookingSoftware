@@ -36,13 +36,10 @@ public class MainMenuView2 extends javax.swing.JFrame {
         waButtonGroup = new javax.swing.ButtonGroup();
         wgButtonGroup = new javax.swing.ButtonGroup();
         wzButtonGroup = new javax.swing.ButtonGroup();
-        buttonGroup8 = new javax.swing.ButtonGroup();
-        buttonGroup9 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         createBookingButton = new javax.swing.JButton();
         cancelBookingButton = new javax.swing.JButton();
-        searchDateButton = new javax.swing.JButton();
-        searchRoomButton = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
         detailsButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -68,18 +65,18 @@ public class MainMenuView2 extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        dateList = new javax.swing.JList<>();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        timeList = new javax.swing.JList<>();
         jLabel17 = new javax.swing.JLabel();
         bookButton = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
-        cancelBookingList = new javax.swing.JLabel();
+        cancelBookingList = new javax.swing.JList<>();
+        bookingLabel = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -151,17 +148,10 @@ public class MainMenuView2 extends javax.swing.JFrame {
             }
         });
 
-        searchDateButton.setText("Search by Date");
-        searchDateButton.addActionListener(new java.awt.event.ActionListener() {
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchDateButtonActionPerformed(evt);
-            }
-        });
-
-        searchRoomButton.setText("Search by Room");
-        searchRoomButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchRoomButtonActionPerformed(evt);
+                searchButtonActionPerformed(evt);
             }
         });
 
@@ -182,9 +172,8 @@ public class MainMenuView2 extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(createBookingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(cancelBookingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(searchDateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(searchRoomButton, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+            .addComponent(cancelBookingButton, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+            .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(detailsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
@@ -199,12 +188,10 @@ public class MainMenuView2 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(cancelBookingButton)
                 .addGap(18, 18, 18)
-                .addComponent(searchDateButton)
-                .addGap(18, 18, 18)
-                .addComponent(searchRoomButton)
+                .addComponent(searchButton)
                 .addGap(18, 18, 18)
                 .addComponent(detailsButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
                 .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -357,23 +344,23 @@ public class MainMenuView2 extends javax.swing.JFrame {
 
         jLabel12.setText("Choose Room:");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        dateList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane2.setViewportView(jList1);
+        dateList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(dateList);
 
         jLabel13.setText("Choose Time Slot");
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        timeList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane3.setViewportView(jList2);
+        timeList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane3.setViewportView(timeList);
 
         jLabel17.setText("Choose Date");
 
@@ -459,16 +446,16 @@ public class MainMenuView2 extends javax.swing.JFrame {
             }
         });
 
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
+        cancelBookingList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList3.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane4.setViewportView(jList3);
+        cancelBookingList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane4.setViewportView(cancelBookingList);
 
-        cancelBookingList.setText("My Bookings:");
-        cancelBookingList.setToolTipText("");
+        bookingLabel.setText("My Bookings:");
+        bookingLabel.setToolTipText("");
 
         jButton7.setBackground(new java.awt.Color(34, 124, 214));
         jButton7.setText("Cancel Selected Booking");
@@ -489,7 +476,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
                         .addContainerGap(103, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cancelBookingList)
+                                .addComponent(bookingLabel)
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(253, Short.MAX_VALUE))
@@ -500,7 +487,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cancelBookingList)
+                .addComponent(bookingLabel)
                 .addGap(5, 5, 5)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
@@ -513,7 +500,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
         jTabbedPane1.addTab("tab3", jPanel5);
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        jLabel4.setText("Search by Date");
+        jLabel4.setText("Search");
 
         jButton4.setText("Back");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -551,7 +538,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(21, 21, 21)
                 .addComponent(jLabel19)
-                .addContainerGap(449, Short.MAX_VALUE))
+                .addContainerGap(498, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -738,41 +725,29 @@ public class MainMenuView2 extends javax.swing.JFrame {
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_createBookingButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jTabbedPane1.setSelectedIndex(0);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        jTabbedPane1.setSelectedIndex(0);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        jTabbedPane1.setSelectedIndex(0);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void cancelBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBookingButtonActionPerformed
         jTabbedPane1.setSelectedIndex(2);
     }//GEN-LAST:event_cancelBookingButtonActionPerformed
 
-    private void searchDateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDateButtonActionPerformed
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         jTabbedPane1.setSelectedIndex(3);
-    }//GEN-LAST:event_searchDateButtonActionPerformed
-
-    private void searchRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchRoomButtonActionPerformed
-        jTabbedPane1.setSelectedIndex(4);
-    }//GEN-LAST:event_searchRoomButtonActionPerformed
+    }//GEN-LAST:event_searchButtonActionPerformed
 
     private void detailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailsButtonActionPerformed
         jTabbedPane1.setSelectedIndex(5);
     }//GEN-LAST:event_detailsButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        jTabbedPane1.setSelectedIndex(0);
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        jTabbedPane1.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        jTabbedPane1.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void waRoom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waRoom1ActionPerformed
         // TODO add your handling code here:
@@ -781,6 +756,14 @@ public class MainMenuView2 extends javax.swing.JFrame {
     private void wgRoom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wgRoom1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_wgRoom1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jTabbedPane1.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        jTabbedPane1.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -817,20 +800,16 @@ public class MainMenuView2 extends javax.swing.JFrame {
         });
     }
 
-    public void addCreateBookingListener(ActionListener listener) {
-        createBookingButton.addActionListener(listener);
+    public void addConfirmBookingListener(ActionListener listener) {
+        bookButton.addActionListener(listener);
     }
 
     public void addCancelBookingListener(ActionListener listener) {
         cancelBookingButton.addActionListener(listener);
     }
 
-    public void addSearchDateListener(ActionListener listener) {
-        searchDateButton.addActionListener(listener);
-    }
-
-    public void addSearchRoomListener(ActionListener listener) {
-        searchRoomButton.addActionListener(listener);
+    public void addSearchButtonListener(ActionListener listener) {
+        searchButton.addActionListener(listener);
     }
 
     public void addDetailsListener(ActionListener listener) {
@@ -854,14 +833,14 @@ public class MainMenuView2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookButton;
+    private javax.swing.JLabel bookingLabel;
     private javax.swing.JList<String> bookingList;
     public javax.swing.JTabbedPane buildingTabs;
-    private javax.swing.ButtonGroup buttonGroup8;
-    private javax.swing.ButtonGroup buttonGroup9;
     private javax.swing.JButton cancelBookingButton;
-    private javax.swing.JLabel cancelBookingList;
+    private javax.swing.JList<String> cancelBookingList;
     private javax.swing.JButton createBookingButton;
-    private javax.swing.JButton detailsButton;
+    public javax.swing.JList<String> dateList;
+    public javax.swing.JButton detailsButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel idLabel;
     private javax.swing.JButton jButton1;
@@ -890,9 +869,6 @@ public class MainMenuView2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JList<String> jList4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -912,19 +888,19 @@ public class MainMenuView2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton logoutButton;
-    public javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel phoneLabel;
-    private javax.swing.JButton searchDateButton;
-    private javax.swing.JButton searchRoomButton;
-    private javax.swing.ButtonGroup waButtonGroup;
+    private javax.swing.JButton searchButton;
+    public javax.swing.JList<String> timeList;
+    public javax.swing.ButtonGroup waButtonGroup;
     private javax.swing.JRadioButton waRoom1;
     private javax.swing.JRadioButton waRoom2;
     private javax.swing.JRadioButton waRoom3;
-    private javax.swing.ButtonGroup wgButtonGroup;
+    public javax.swing.ButtonGroup wgButtonGroup;
     private javax.swing.JRadioButton wgRoom1;
     private javax.swing.JRadioButton wgRoom2;
     private javax.swing.JRadioButton wgRoom3;
-    private javax.swing.ButtonGroup wzButtonGroup;
+    public javax.swing.ButtonGroup wzButtonGroup;
     private javax.swing.JRadioButton wzRoom1;
     private javax.swing.JRadioButton wzRoom2;
     private javax.swing.JRadioButton wzRoom3;
