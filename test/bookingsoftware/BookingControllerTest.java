@@ -4,6 +4,7 @@
  */
 package bookingsoftware;
 
+import java.sql.SQLException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -40,7 +41,7 @@ public class BookingControllerTest {
      * Test of cancelBooking method, of class BookingController.
      */
     @Test
-    public void testCancelBooking() {
+    public void testCancelBooking() throws SQLException {
         //successfully cancelled booking
         //no booking selected (null)
         System.out.println("cancelBooking");
@@ -51,7 +52,7 @@ public class BookingControllerTest {
     }
     
     @Test
-    public void testCreateBooking() {
+    public void testCreateBooking() throws SQLException {
         //booking not available error
         //successful booking
         System.out.println("createBooking");

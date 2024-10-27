@@ -1,5 +1,5 @@
-Sun Oct 27 20:28:00 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
-Sun Oct 27 20:28:13 NZDT 2024 Thread[DRDAConnThread_2,5,main] Cleanup action starting
+Sun Oct 27 20:29:26 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+Sun Oct 27 20:29:31 NZDT 2024 Thread[DRDAConnThread_2,5,main] Cleanup action starting
 java.sql.SQLException: Database 'Database' not found.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
@@ -53,7 +53,7 @@ ERROR XJ004: Database 'Database' not found.
 	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
 ============= end nested exception, level (1) ===========
 Cleanup action completed
-Sun Oct 27 20:28:13 NZDT 2024 Thread[DRDAConnThread_2,5,main] (DATABASE = Database), (DRDAID = {1}), Database 'Database' not found.
+Sun Oct 27 20:29:31 NZDT 2024 Thread[DRDAConnThread_2,5,main] (DATABASE = Database), (DRDAID = {1}), Database 'Database' not found.
 ----------------------------------------------------------------
-Sun Oct 27 20:29:22 NZDT 2024: Shutting down Derby engine
+Sun Oct 27 20:29:52 NZDT 2024: Shutting down Derby engine
 ----------------------------------------------------------------
