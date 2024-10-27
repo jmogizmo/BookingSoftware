@@ -741,6 +741,10 @@ public class MainMenuView2 extends javax.swing.JFrame {
         jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        jTabbedPane1.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -760,10 +764,6 @@ public class MainMenuView2 extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        jTabbedPane1.setSelectedIndex(0);
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -835,11 +835,11 @@ public class MainMenuView2 extends javax.swing.JFrame {
     private javax.swing.JButton bookButton;
     private javax.swing.JLabel bookingLabel;
     private javax.swing.JList<String> bookingList;
-    public javax.swing.JTabbedPane buildingTabs;
+    private javax.swing.JTabbedPane buildingTabs;
     private javax.swing.JButton cancelBookingButton;
     private javax.swing.JList<String> cancelBookingList;
     private javax.swing.JButton createBookingButton;
-    public javax.swing.JList<String> dateList;
+    private javax.swing.JList<String> dateList;
     public javax.swing.JButton detailsButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel idLabel;
@@ -886,12 +886,12 @@ public class MainMenuView2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    public javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton logoutButton;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel phoneLabel;
     private javax.swing.JButton searchButton;
-    public javax.swing.JList<String> timeList;
+    private javax.swing.JList<String> timeList;
     public javax.swing.ButtonGroup waButtonGroup;
     private javax.swing.JRadioButton waRoom1;
     private javax.swing.JRadioButton waRoom2;

@@ -31,7 +31,7 @@ public class DBManager {
     }
 
     public DBManager() {
-        
+
     }
 
     public Connection getConnection() {
@@ -161,6 +161,7 @@ public class DBManager {
         Statement statement = conn.createStatement();
 
         try {
+            
             rs = statement.executeQuery(command);
             while (rs.next()) {
                 userInfo result = new userInfo();
@@ -248,8 +249,8 @@ public class DBManager {
     }
 
     public static int cancelBooking(int BOOKINGID) {
-        String deleteSQL = "DELETE FROM BOOKEDROOMS WHERE BOOKING_ID = "+BOOKINGID;
-        
+        String deleteSQL = "DELETE FROM BOOKEDROOMS WHERE BOOKING_ID = " + BOOKINGID;
+
         try ( PreparedStatement PS = conn.prepareStatement(deleteSQL)) {
 
             PS.executeUpdate();
@@ -272,7 +273,6 @@ public class DBManager {
             rs = statement.executeQuery(command);
 
             //System.out.println("BOOKINGS FOR : " + studentID);
-
             while (rs.next()) {
 
                 int BOOKING_ID = rs.getInt("BOOKING_ID");
@@ -292,23 +292,23 @@ public class DBManager {
         }
         return result;
     }
-    
+
     public static ArrayList<String> returnSearch(String buildingCode, String roomCode, String date) throws SQLException {
-        
+
         ResultSet rs = null;
         ArrayList<String> result = new ArrayList<>();
-        
+
         String SQLtimes = "\"12:00\", \"12:30\", \"13:00\", \"13:30\", \"14:00\", \"14:30\", \"15:00\", \"15:30\",\"16:00\", \"16:30\", \"17:00\", \"17:30\", \"18:00\", \"18:30\", \"19:00\", \"19:30\", \"20:00\"";
-        
-        String filter = "BUILDINGCODE='"+buildingCode+
-                "' AND ROOMCODE="+roomCode+
-                " AND BOOKINGDATE='"+date+"'";
-        
-        String command = "SELECT "+SQLtimes+" FROM BOOKINGS WHERE "+filter;
+
+        String filter = "BUILDINGCODE='" + buildingCode
+                + "' AND ROOMCODE=" + roomCode
+                + " AND BOOKINGDATE='" + date + "'";
+
+        String command = "SELECT " + SQLtimes + " FROM BOOKINGS WHERE " + filter;
         Statement statement = conn.createStatement();
-        String[] timeslots = {"12:00", "12:30", "13:00", "13:30", "14:00", 
-                              "14:30", "15:00", "15:30", "16:00", "16:30", 
-                              "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
+        String[] timeslots = {"12:00", "12:30", "13:00", "13:30", "14:00",
+            "14:30", "15:00", "15:30", "16:00", "16:30",
+            "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
         try {
             rs = statement.executeQuery(command);
             if (rs.next()) {

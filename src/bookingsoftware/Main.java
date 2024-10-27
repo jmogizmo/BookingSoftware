@@ -37,7 +37,7 @@ public class Main extends JFrame {
             System.err.println("Error Connecting to database. \nPlease try again.");
         } 
         
-        DBManager.closeConnections();
+        
 
     }
 }
