@@ -38,7 +38,7 @@ public class UserManager {
             currentUser = new userInfo(id, name, password, email, phone);
             users.put(id, currentUser);
                 // (student_id, first_name, email, phone, password, event)
-            String appendUser = id + ", '"+name+ "', '"+email+ "', "+phone+ ", '"+password+ "', false";
+            String appendUser = id + ", '"+name+ "', '"+email+ "', "+phone+ ", '"+password+ "'";
             
             DBManager.appendToField("USERINFO", appendUser);
             System.out.println("user added. returned true");
