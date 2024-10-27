@@ -16,7 +16,6 @@ public class UserManager {
 
     private Map<Integer, userInfo> users = new HashMap<>();
     public static userInfo currentUser = null;
-    //DBManager db = new DBManager();
 
     public int addUser(int id, String name, String password, String email, long phone) throws SQLException {
         //some fields are empty
@@ -37,9 +36,9 @@ public class UserManager {
         if (!users.containsKey(id)) {
             currentUser = new userInfo(id, name, password, email, phone);
             users.put(id, currentUser);
-                // (student_id, first_name, email, phone, password, event)
-            String appendUser = id + ", '"+name+ "', '"+email+ "', "+phone+ ", '"+password+ "', false";
-            
+            // (student_id, first_name, email, phone, password, event)
+            String appendUser = id + ", '" + name + "', '" + email + "', " + phone + ", '" + password + "', false";
+
             DBManager.appendToField("USERINFO", appendUser);
             System.out.println("user added. returned true");
             return 1;
@@ -57,6 +56,7 @@ public class UserManager {
         }
         return false;
     }
+
     public void loadUsers() throws SQLException {
 
         for (Map.Entry<Integer, userInfo> entry : DBManager.returnAllUsers().entrySet()) {
@@ -66,5 +66,9 @@ public class UserManager {
             // Put the key-value pair into userMap
             users.put(studentId, u);
         }
+    }
+
+    public static String[] getBookingList() {
+        return currentUser.bookingList;
     }
 }

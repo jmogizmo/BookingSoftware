@@ -24,6 +24,7 @@ public class MainMenuController<E> {
         this.users = users;
         this.mainMenuView.addDetailsListener(e -> showDetails());
         this.mainMenuView.addLogoutListener(e -> logout());
+        
 
     }
 

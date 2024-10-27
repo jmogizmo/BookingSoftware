@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -27,8 +28,8 @@ public class userInfo {
     private String name;
     private String email;
     private long phone;
-    private int studentID;
-    private ArrayList<String> bookingList;
+    private static int studentID;
+    public static String[] bookingList = {""};
 
     public static String usersTXTpath = "./resources/users.txt";
 
@@ -78,12 +79,8 @@ public class userInfo {
         this.phone = phone;
     }
     
-    public void addBooking(String booking){
-        bookingList.add(booking);
-    }
-    
-    public ArrayList<String> getBookingList(){
-        return bookingList;
+    public static void makeBookingList() throws SQLException{
+        bookingList = DBManager.returnUserBookings(studentID);
     }
 
     public String getName() {

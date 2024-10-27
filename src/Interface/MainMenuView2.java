@@ -6,6 +6,9 @@ package Interface;
 
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import bookingsoftware.UserManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -17,7 +20,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
     /**
      * Creates new form MainMenuView2
      */
-    public MainMenuView2() {
+    public MainMenuView2(){
         super("AUT Room Booking");
         initComponents();
     }
@@ -345,7 +348,8 @@ public class MainMenuView2 extends javax.swing.JFrame {
         jLabel12.setText("Choose Room:");
 
         dateList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "19-08-2024","20-08-2024","21-08-2024","22-08-2024","23-08-2024","24-08-2024"
+            };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -355,7 +359,9 @@ public class MainMenuView2 extends javax.swing.JFrame {
         jLabel13.setText("Choose Time Slot");
 
         timeList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = {"12:00", "12:30", "13:00", "13:30", "14:00",
+                "14:30", "15:00", "15:30", "16:00", "16:30",
+                "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -397,9 +403,9 @@ public class MainMenuView2 extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bookButton, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addContainerGap(54, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -423,10 +429,10 @@ public class MainMenuView2 extends javax.swing.JFrame {
                             .addComponent(buildingTabs, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -447,9 +453,10 @@ public class MainMenuView2 extends javax.swing.JFrame {
         });
 
         cancelBookingList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = UserManager.getBookingList();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+
         });
         cancelBookingList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(cancelBookingList);
@@ -492,7 +499,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addContainerGap())
         );
@@ -620,7 +627,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
         jLabel15.setText("My Bookings:");
 
         bookingList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = UserManager.getBookingList();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -795,7 +802,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenuView2().setVisible(true);
+                    new MainMenuView2().setVisible(true);
             }
         });
     }
@@ -822,6 +829,10 @@ public class MainMenuView2 extends javax.swing.JFrame {
 
     public void displayError(String error) {
         JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void displayMessage(String message){
+        JOptionPane.showMessageDialog(this, message, "Booking APP", JOptionPane.PLAIN_MESSAGE);
     }
 
     public void setDetails(String name, int id, String email, long phone) {

@@ -39,29 +39,25 @@ public class BookingController {
         //read all bookings belonging to a specific studentID
     }
 
-    public void showTimes() {
-        //read times from bookings database
-        //if booked, make the time red
-        //if available, make the time green
-    }
-
     public void cancelBooking() {
-
+        //detect selected string from list
+        //extrtact bookingID
+        //parse boooking into DBmanager cancel booking method
     }
 
     public String getSelectedButton(int index, ButtonGroup bg1, ButtonGroup bg2, ButtonGroup bg3) {
         ButtonGroup[] buttonGroups = {bg1, bg2, bg3};
 
         //search through every radiobutton in each buttongroup to find the selected one
-            for (Enumeration<AbstractButton> buttons = buttonGroups[index].getElements(); buttons.hasMoreElements();) {
-                AbstractButton button = buttons.nextElement();
+        for (Enumeration<AbstractButton> buttons = buttonGroups[index].getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
 
-                if (button.isSelected()) {
-                    //return the text if it is selected
-                    return button.getText();
-                }
-
+            if (button.isSelected()) {
+                //return the text if it is selected
+                return button.getText();
             }
+
+        }
 
         return "";
     }
@@ -87,7 +83,21 @@ public class BookingController {
         String time = menuView.timeList.getSelectedValue();
         String date = menuView.dateList.getSelectedValue();
 
-        DBManager.createBooking(UserManager.currentUser, building, room, time, date);
+        switch (DBManager.returnisBooked(time, building, room, date)) {
+            case 0:
+                DBManager.createBooking(UserManager.currentUser, building, room, time, date);
+                menuView.displayMessage("Booking Successful!");
+                break;
+            //error already boooked
+            case 1:
+                menuView.displayError("Booking not available");
+                break;
+            //other error
+            default:
+                menuView.displayError("unknown ERROR");
+                break;
+        }
+
     }
 
 }

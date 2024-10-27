@@ -4,6 +4,7 @@
  */
 package bookingsoftware;
 
+import java.sql.SQLException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,7 +44,7 @@ public class UserManagerTest {
      * Test of addUser method, of class UserManager.
      */
     @Test
-    public void testAddUser() {
+    public void testAddUser() throws SQLException {
         UserManager instance = new UserManager();
         instance.loadUsers();
         //incomplete fields error
@@ -67,7 +68,7 @@ public class UserManagerTest {
      * Test of authenticateUser method, of class UserManager.
      */
     @Test
-    public void testAuthenticateUser() {
+    public void testAuthenticateUser() throws SQLException {
         UserManager instance = new UserManager();
 
         //incomplete fields error
@@ -87,7 +88,7 @@ public class UserManagerTest {
      * Test of loadUsers method, of class UserManager.
      */
     @Test
-    public void testLoadUsers() {
+    public void testLoadUsers() throws SQLException {
         System.out.println("loadUsers");
         UserManager instance = new UserManager();
         instance.loadUsers();
