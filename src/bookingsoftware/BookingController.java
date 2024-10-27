@@ -20,6 +20,7 @@ public class BookingController {
 
     private MainMenuView2 menuView;
     private BookingInfo bookingInfo;
+    private DBManager db;
 
     public BookingController(MainMenuView2 menuView, BookingInfo bookingInfo) {
         this.menuView = menuView;

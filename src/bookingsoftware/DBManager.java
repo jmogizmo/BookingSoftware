@@ -21,7 +21,7 @@ public class DBManager {
     private static final String USER_NAME = "root";
     private static final String PASS = "root";
     private static final String URL = "jdbc:derby://localhost:1527/Database";
-    public static Connection conn;
+    private static Connection conn;
 
     public static void main(String[] args) throws SQLException {
         DBManager DB = new DBManager();
@@ -149,16 +149,6 @@ public class DBManager {
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-//        } finally {
-//            if (rs != null) {
-//                rs.close();
-//            }
-//            if (statement != null) {
-//                statement.close();
-//            }
-//            if (conn != null) {
-//                conn.close();
-//            }
         }
         return result;
     }
