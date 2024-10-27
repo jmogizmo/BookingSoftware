@@ -20,11 +20,11 @@ public class BookingController {
 
     private MainMenuView2 menuView;
     private BookingInfo bookingInfo;
-    private DBManager db;
+    private UserManager userManager;
 
-    public BookingController(MainMenuView2 menuView, BookingInfo bookingInfo) {
+    public BookingController(MainMenuView2 menuView, UserManager userManager) {
         this.menuView = menuView;
-        this.bookingInfo = bookingInfo;
+        this.userManager = userManager;
         this.menuView.addConfirmBookingListener(e -> {
             try {
                 createBooking();
@@ -32,18 +32,45 @@ public class BookingController {
                 Logger.getLogger(BookingController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        this.menuView.addCancelBookingListener(e -> cancelBooking());
+        this.menuView.addCancelBookingListener(e -> {
+            try {
+                cancelBooking();
+            } catch (SQLException ex) {
+                Logger.getLogger(BookingController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        this.menuView.addCancelSelectedBookingListener(e -> {
+            try {
+                cancelSelectedBooking();
+            } catch (SQLException ex) {
+                Logger.getLogger(BookingController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 
-    public void showMyBookings(int ID) {
-        //read all bookings belonging to a specific studentID
-        
+    public void cancelBooking() throws SQLException {
+        //refresh user bookings
+        userManager.refreshUserBookings();
+        menuView.listModel2.removeAllElements();
+        for (String booking : userManager.getBookingList()) {
+            menuView.listModel2.addElement(booking);
+        }
     }
 
-    public void cancelBooking() {
+    public void cancelSelectedBooking() throws SQLException {
         //detect selected string from list
+        String bookingToCancel = menuView.cancelBookingList.getSelectedValue();
         //extrtact bookingID
+        String[] parts = bookingToCancel.split(" ");
         //parse boooking into DBmanager cancel booking method
+        int value = DBManager.cancelBooking(parts[0]);
+        if (value == 0) {
+            menuView.displayMessage("Booking has been Cancelled!");
+        } else {
+            menuView.displayError("Error");
+        }
+        //refresh and update the list
+        cancelBooking();
     }
 
     public String getSelectedButton(int index, ButtonGroup bg1, ButtonGroup bg2, ButtonGroup bg3) {
@@ -88,6 +115,7 @@ public class BookingController {
             case 0:
                 DBManager.createBooking(UserManager.currentUser, building, room, time, date);
                 menuView.displayMessage("Booking Successful!");
+                userManager.refreshUserBookings();
                 break;
             //error already boooked
             case 1:

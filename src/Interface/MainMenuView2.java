@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import bookingsoftware.UserManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -17,10 +17,13 @@ import java.util.logging.Logger;
  */
 public class MainMenuView2 extends javax.swing.JFrame {
 
+    public DefaultListModel listModel1 = new DefaultListModel();
+    public DefaultListModel listModel2 = new DefaultListModel();
+
     /**
      * Creates new form MainMenuView2
      */
-    public MainMenuView2(){
+    public MainMenuView2() {
         super("AUT Room Booking");
         initComponents();
     }
@@ -80,7 +83,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         cancelBookingList = new javax.swing.JList<>();
         bookingLabel = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
+        cancelSelectedBookingButton = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
@@ -452,20 +455,15 @@ public class MainMenuView2 extends javax.swing.JFrame {
             }
         });
 
-        cancelBookingList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = UserManager.getBookingList();
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-
-        });
+        cancelBookingList.setModel(listModel2);
         cancelBookingList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(cancelBookingList);
 
         bookingLabel.setText("My Bookings:");
         bookingLabel.setToolTipText("");
 
-        jButton7.setBackground(new java.awt.Color(34, 124, 214));
-        jButton7.setText("Cancel Selected Booking");
+        cancelSelectedBookingButton.setBackground(new java.awt.Color(34, 124, 214));
+        cancelSelectedBookingButton.setText("Cancel Selected Booking");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -485,7 +483,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(bookingLabel)
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cancelSelectedBookingButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(253, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -498,7 +496,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(jButton7)
+                .addComponent(cancelSelectedBookingButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addContainerGap())
@@ -626,11 +624,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
 
         jLabel15.setText("My Bookings:");
 
-        bookingList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = UserManager.getBookingList();
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        bookingList.setModel(listModel1);
         jScrollPane1.setViewportView(bookingList);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -802,7 +796,7 @@ public class MainMenuView2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                    new MainMenuView2().setVisible(true);
+                new MainMenuView2().setVisible(true);
             }
         });
     }
@@ -813,6 +807,10 @@ public class MainMenuView2 extends javax.swing.JFrame {
 
     public void addCancelBookingListener(ActionListener listener) {
         cancelBookingButton.addActionListener(listener);
+    }
+
+    public void addCancelSelectedBookingListener(ActionListener listener) {
+        cancelSelectedBookingButton.addActionListener(listener);
     }
 
     public void addSearchButtonListener(ActionListener listener) {
@@ -830,25 +828,26 @@ public class MainMenuView2 extends javax.swing.JFrame {
     public void displayError(String error) {
         JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
     }
-    
-    public void displayMessage(String message){
+
+    public void displayMessage(String message) {
         JOptionPane.showMessageDialog(this, message, "Booking APP", JOptionPane.PLAIN_MESSAGE);
     }
 
     public void setDetails(String name, int id, String email, long phone) {
         nameLabel.setText(name);
-        idLabel.setText(""+id);
+        idLabel.setText("" + id);
         emailLabel.setText(email);
-        phoneLabel.setText("+64 "+phone);
+        phoneLabel.setText("+64 " + phone);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookButton;
     private javax.swing.JLabel bookingLabel;
-    private javax.swing.JList<String> bookingList;
+    public javax.swing.JList<String> bookingList;
     public javax.swing.JTabbedPane buildingTabs;
     private javax.swing.JButton cancelBookingButton;
     public javax.swing.JList<String> cancelBookingList;
+    public javax.swing.JButton cancelSelectedBookingButton;
     private javax.swing.JButton createBookingButton;
     public javax.swing.JList<String> dateList;
     public javax.swing.JButton detailsButton;
@@ -860,7 +859,6 @@ public class MainMenuView2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

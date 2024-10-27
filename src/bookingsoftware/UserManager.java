@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public class UserManager {
 
-    private Map<Integer, userInfo> users = new HashMap<>();
-    public static userInfo currentUser = null;
+    private final Map<Integer, userInfo> users = new HashMap<>();
+    public static userInfo currentUser = new userInfo();
 
     public int addUser(int id, String name, String password, String email, long phone) throws SQLException {
         //some fields are empty
@@ -67,8 +67,14 @@ public class UserManager {
             users.put(studentId, u);
         }
     }
+    
+    public static void refreshUserBookings() throws SQLException{
+        System.out.println("user bookings refreshed.");
+        currentUser.bookingList = DBManager.returnUserBookings(currentUser.getStudentID());
+    }
 
     public static String[] getBookingList() {
+        System.out.println("getbookinglist called in usermanager");
         return currentUser.bookingList;
     }
 }

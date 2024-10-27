@@ -18,26 +18,35 @@ import java.util.logging.Logger;
 public class Main extends JFrame {
 
     public static void main(String[] args) {
-        //start login
+        //start
         if (DBManager.establishConnection() == 0) {
             SwingUtilities.invokeLater(() -> {
+
+                //load model
+                UserManager userManager = new UserManager();
+
+                //load all users from db on startup
+                try {
+                    userManager.loadUsers();
+                    userManager.refreshUserBookings();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                //load views
                 LoginRegisterView2 loginView = new LoginRegisterView2();
-                UserManager model = new UserManager();
-                try { model.loadUsers();
-                } catch (SQLException ex) { Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);}
                 MainMenuView2 menuView = new MainMenuView2();
                 UserDetailsView2 userDetailsView = new UserDetailsView2();
-                BookingInfo bookingInfo = new BookingInfo();
-                new LoginRegisterController(loginView, model, menuView, userDetailsView);
-                new MainMenuController(menuView, loginView, model);
-                new BookingController(menuView, bookingInfo);
+
+                //load controllers
+                new LoginRegisterController(loginView, userManager, menuView, userDetailsView);
+                new MainMenuController(menuView, loginView, userManager);
+                new BookingController(menuView, userManager);
                 loginView.setVisible(true);
             });
         } else {
             System.err.println("Error Connecting to database. \nPlease try again.");
-        } 
-        
-        
+        }
 
     }
 }

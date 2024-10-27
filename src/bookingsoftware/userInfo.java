@@ -28,8 +28,8 @@ public class userInfo {
     private String name;
     private String email;
     private long phone;
-    private static int studentID;
-    public static String[] bookingList = {""};
+    private int studentID;
+    public String[] bookingList;
 
     public static String usersTXTpath = "./resources/users.txt";
 
@@ -44,11 +44,13 @@ public class userInfo {
     }
 
     public userInfo(int id, String password) {
+        this.bookingList = new String[]{"Test booking 1", "Test booking 2"};
         this.studentID = id;
         this.password = password;
     }
 
     public userInfo() {
+        this.bookingList = new String[]{"Test booking 1", "Test booking 2"};
         this.studentID = 0;
         this.name = null;
         this.email = null;
@@ -57,6 +59,7 @@ public class userInfo {
     }
 
     public userInfo(String name, int id, String password) {
+        this.bookingList = new String[]{"Test booking 1", "Test booking 2"};
         this.name = name;
         this.studentID = id;
         this.password = password;
@@ -65,6 +68,7 @@ public class userInfo {
     }
 
     public userInfo(int id, String name, String password, String email, long phone) {
+        this.bookingList = new String[]{"Test booking 1", "Test booking 2"};
         this.studentID = id;
         this.name = name;
         this.email = email;
@@ -73,17 +77,17 @@ public class userInfo {
     }
 
     public userInfo(int id, String name, String email, long phone) {
+        this.bookingList = new String[]{"Test booking 1", "Test booking 2"};
         this.studentID = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
     }
     
-    public static void makeBookingList() throws SQLException{
-        ArrayList<String> ar = DBManager.returnUserBookings(studentID);
-        bookingList = ar.toArray(new String[ar.size()]);
-        
-    }
+//    //refreshes booking list
+//    public void makeBookingList() throws SQLException{
+//        bookingList = DBManager.returnUserBookings(this.studentID);       
+//    }
 
     public String getName() {
         return name;

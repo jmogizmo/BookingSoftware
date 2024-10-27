@@ -248,7 +248,7 @@ public class DBManager {
         return false;
     }
 
-    public static int cancelBooking(int BOOKINGID) {
+    public static int cancelBooking(String BOOKINGID) {
         String deleteSQL = "DELETE FROM BOOKEDROOMS WHERE BOOKING_ID = " + BOOKINGID;
 
         try ( PreparedStatement PS = conn.prepareStatement(deleteSQL)) {
@@ -262,10 +262,11 @@ public class DBManager {
         return -1;// error
     }
 
-    public static ArrayList<String> returnUserBookings(int studentID) throws SQLException {
+    public static String[] returnUserBookings(int studentID) throws SQLException {
 
         ResultSet rs = null;
-        ArrayList<String> result = new ArrayList<>();
+        String[] result = new String[50];
+        int counter = 0;
         String command = "SELECT * FROM BOOKEDROOMS WHERE STUDENT_ID = " + studentID;
         Statement statement = conn.createStatement();
 
@@ -284,7 +285,8 @@ public class DBManager {
 
                 String data = BOOKING_ID + " " + FIRST_NAME + " " + BUILDINGCODE + " " + ROOMCODE + " " + DATES + " " + TIMES;
 
-                result.add(data);
+                result[counter] = data;
+                counter++;
 
             }
         } catch (SQLException ex) {
