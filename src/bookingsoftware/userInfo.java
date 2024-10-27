@@ -80,7 +80,9 @@ public class userInfo {
     }
     
     public static void makeBookingList() throws SQLException{
-        bookingList = DBManager.returnUserBookings(studentID);
+        ArrayList<String> ar = DBManager.returnUserBookings(studentID);
+        bookingList = ar.toArray(new String[ar.size()]);
+        
     }
 
     public String getName() {

@@ -262,11 +262,10 @@ public class DBManager {
         return -1;// error
     }
 
-    public static String[] returnUserBookings(int studentID) throws SQLException {
+    public static ArrayList<String> returnUserBookings(int studentID) throws SQLException {
 
         ResultSet rs = null;
-        String[] result = new String[50];
-        int counter = 0;
+        ArrayList<String> result = new ArrayList<>();
         String command = "SELECT * FROM BOOKEDROOMS WHERE STUDENT_ID = " + studentID;
         Statement statement = conn.createStatement();
 
@@ -285,8 +284,7 @@ public class DBManager {
 
                 String data = BOOKING_ID + " " + FIRST_NAME + " " + BUILDINGCODE + " " + ROOMCODE + " " + DATES + " " + TIMES;
 
-                result[counter] = data;
-                counter++;
+                result.add(data);
 
             }
         } catch (SQLException ex) {
