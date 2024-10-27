@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 public class Main extends JFrame {
 
     public static void main(String[] args) {
-        //start login
-        if (DBManager.establishConnection() == 0) {
+
+        if (DBManager.establishConnection() == 0) { // RUN PROGRAM IF CAN ESTABLISH CONNECTION TO DATABASE
             SwingUtilities.invokeLater(() -> {
                 LoginRegisterView2 loginView = new LoginRegisterView2();
                 UserManager model = new UserManager();
@@ -34,10 +34,7 @@ public class Main extends JFrame {
                 loginView.setVisible(true);
             });
         } else {
-            System.err.println("Error Connecting to database. \nPlease try again.");
+            System.err.println("Error Connecting to database. \nPlease try again."); // DISPLAY ERROR
         } 
-        
-        
-
     }
 }

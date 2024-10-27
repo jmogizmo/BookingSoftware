@@ -34,7 +34,7 @@ public class UserManager {
             return -3;
         }
         //check if user is in the database
-        if (!users.containsKey(id)) {
+        if (!users.containsKey(id)) { 
             currentUser = new userInfo(id, name, password, email, phone);
             users.put(id, currentUser);
                 // (student_id, first_name, email, phone, password, event)
@@ -50,16 +50,18 @@ public class UserManager {
     }
 
     public boolean authenticateUser(int id, String password) throws SQLException {
+        
         loadUsers();
-        if (users.containsKey(id)) {
+        
+        if (users.containsKey(id)) { // IF ID EXISTS IN HASHMAP
             this.currentUser = users.get(id);
             return users.get(id).getPassword().equals(password);
         }
         return false;
     }
-    public void loadUsers() throws SQLException {
-
-        for (Map.Entry<Integer, userInfo> entry : DBManager.returnAllUsers().entrySet()) {
+    public void loadUsers() throws SQLException { // LOAD USERS FROM DATABASE INTO PROGRAM
+        
+        for (Map.Entry<Integer, userInfo> entry : DBManager.returnAllUsers().entrySet()) { // ITERATE THROUGH DATABASE FOR USERS
             Integer studentId = entry.getKey();
             userInfo u = entry.getValue();
 
