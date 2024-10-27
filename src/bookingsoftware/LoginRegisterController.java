@@ -5,6 +5,9 @@
 package bookingsoftware;
 
 import Interface.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,15 +27,26 @@ public class LoginRegisterController {
         this.model = model;
         this.menuView = menuView;
         this.userDetailsView = userDetailsView;
-
-        this.loginView.addLoginListener(e -> login());
+        this.loginView.addLoginListener(e -> {
+            try {
+                login();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginRegisterController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         this.loginView.addRegisterListener(e -> register());
-        this.userDetailsView.addSaveDetailsListener(e -> saveUserDetails());
+        this.userDetailsView.addSaveDetailsListener(e -> {
+            try {
+                saveUserDetails();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginRegisterController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         this.userDetailsView.addBackListener(e -> backToLogin());
         //this.loginView.addDevListener(e -> devButton());
     }
 
-    private void login() {
+    private void login() throws SQLException {
         int id = loginView.getID();
         String password = loginView.getPassword();
         if(id == -1){
@@ -55,7 +69,7 @@ public class LoginRegisterController {
         userDetailsView.setVisible(true);
     }
 
-    private void saveUserDetails() {
+    private void saveUserDetails() throws SQLException {
         
         int id = userDetailsView.getID();
         String name = userDetailsView.getName();
