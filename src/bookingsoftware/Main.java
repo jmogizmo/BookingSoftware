@@ -39,6 +39,7 @@ public class Main extends JFrame {
                 UserDetailsView2 userDetailsView = new UserDetailsView2();
 
                 //load controllers
+                new SearchController(menuView);
                 new LoginRegisterController(loginView, userManager, menuView, userDetailsView);
                 new MainMenuController(menuView, loginView, userManager);
                 new BookingController(menuView, userManager);
