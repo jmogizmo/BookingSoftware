@@ -28,6 +28,9 @@ public class DBManager {
         System.out.println(DB.getConnection());
         establishConnection();
         // DATABASE TESTING EXECUTABLE
+        
+        
+        //returnSearch('WZ', 301);
     }
 
     public DBManager() {
@@ -316,6 +319,10 @@ public class DBManager {
             rs = statement.executeQuery(command);
             if (rs.next()) {
                 for (String timeslot : timeslots) {
+                    
+                    if (rs.getBoolean(timeslot)) {
+                        continue;
+                    }
                     System.out.println(timeslot);
                     result[counter] = timeslot;
                     counter++;
