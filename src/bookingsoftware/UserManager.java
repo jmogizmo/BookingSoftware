@@ -16,8 +16,6 @@ public class UserManager {
 
     private final Map<Integer, userInfo> users = new HashMap<>();
     public static userInfo currentUser = new userInfo();
-    
-    
 
     public int addUser(int id, String name, String password, String email, long phone) throws SQLException {
         //some fields are empty
@@ -60,11 +58,11 @@ public class UserManager {
     }
 
     public void loadUsers() throws SQLException {
-        
+
         for (Map.Entry<Integer, userInfo> entry : DBManager.returnAllUsers().entrySet()) {
             Integer studentId = entry.getKey();
             userInfo u = entry.getValue();
-            System.out.println("pass");
+
             // Put the key-value pair into userMap
             users.put(studentId, u);
         }
