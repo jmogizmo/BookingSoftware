@@ -20,7 +20,7 @@ public class DBManager {
 
     private static final String USER_NAME = "root";
     private static final String PASS = "root";
-    private static final String URL = "jdbc:derby://localhost:1527/Database";
+    private static final String URL = "jdbc:derby://localhost:1527/Bookings Database";
     private static Connection conn;
 
     public static void main(String[] args) throws SQLException {
