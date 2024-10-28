@@ -1697,3 +1697,9 @@ ERROR XJ004: Database 'Database' not found.
 ============= end nested exception, level (1) ===========
 Cleanup action completed
 Mon Oct 28 22:24:04 NZDT 2024 Thread[DRDAConnThread_2,5,main] (DATABASE = Database), (DRDAID = {10}), Database 'Database' not found.
+----------------------------------------------------------------
+Mon Oct 28 22:28:07 NZDT 2024: Shutting down Derby engine
+----------------------------------------------------------------
+Mon Oct 28 22:28:07 NZDT 2024:
+Shutting down instance 176240b2-0192-d266-cc00-ffffb7d26232 on database directory C:\Users\Dante Leyting\Documents\GitHub\BookingSoftware\BookingSoftwareDB\Bookings Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30946e09 
+----------------------------------------------------------------
