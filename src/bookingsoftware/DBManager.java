@@ -295,10 +295,11 @@ public class DBManager {
         return result;
     }
 
-    public static ArrayList<String> returnSearch(String buildingCode, String roomCode, String date) throws SQLException {
+    public static String[] returnSearch(String buildingCode, String roomCode, String date) throws SQLException {
 
         ResultSet rs = null;
-        ArrayList<String> result = new ArrayList<>();
+        String[] result = new String[17];
+        int counter = 0;
 
         String SQLtimes = "\"12:00\", \"12:30\", \"13:00\", \"13:30\", \"14:00\", \"14:30\", \"15:00\", \"15:30\",\"16:00\", \"16:30\", \"17:00\", \"17:30\", \"18:00\", \"18:30\", \"19:00\", \"19:30\", \"20:00\"";
 
@@ -315,7 +316,9 @@ public class DBManager {
             rs = statement.executeQuery(command);
             if (rs.next()) {
                 for (String timeslot : timeslots) {
-                    result.add(rs.getString(timeslot));
+                    System.out.println(timeslot);
+                    result[counter] = timeslot;
+                    counter++;
                 }
 
             }

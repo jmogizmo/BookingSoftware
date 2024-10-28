@@ -19,12 +19,12 @@ import javax.swing.ButtonGroup;
 public class BookingController {
 
     private MainMenuView2 menuView;
-    private BookingInfo bookingInfo;
     private UserManager userManager;
 
     public BookingController(MainMenuView2 menuView, UserManager userManager) {
         this.menuView = menuView;
         this.userManager = userManager;
+        
         this.menuView.addConfirmBookingListener(e -> {
             try {
                 createBooking();
