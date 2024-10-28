@@ -5,9 +5,6 @@
 package bookingsoftware;
 
 import Interface.*;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,40 +22,23 @@ public class MainMenuController<E> {
         this.mainMenuView = mainMenuView;
         this.loginView = loginView;
         this.users = users;
-        this.mainMenuView.addDetailsListener(e -> {
-            try {
-                showDetails();
-            } catch (SQLException ex) {
-                Logger.getLogger(MainMenuController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+        this.mainMenuView.addDetailsListener(e -> showDetails());
         this.mainMenuView.addLogoutListener(e -> logout());
-        
 
     }
 
-    private void showDetails() throws SQLException{
+    private void showDetails() {
         //check if currentUser has been loaded
         if (users.currentUser != null) {
             mainMenuView.setDetails(users.currentUser.getName(),
                     users.currentUser.getStudentID(),
                     users.currentUser.getEmail(),
                     users.currentUser.getPhone());
-                    showMyBookings();
+
             mainMenuView.jTabbedPane1.setSelectedIndex(5);
         } else {
             mainMenuView.displayError("ERROR");
         }
-    }
-    
-    public void showMyBookings() throws SQLException{
-        //refresh user bookings
-        users.refreshUserBookings();
-        mainMenuView.listModel1.removeAllElements();
-        for(String booking : users.getBookingList()){
-            mainMenuView.listModel1.addElement(booking);
-        }
-    
     }
 
     public void display() {
