@@ -32,6 +32,8 @@ public class UserManager {
             System.out.println("Phone number error");
             return -3;
         }
+        
+        System.out.println(users.containsKey(id));
         //check if user is in the database
         if (!users.containsKey(id)) {
             currentUser = new userInfo(id, name, password, email, phone);

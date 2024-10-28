@@ -33,22 +33,27 @@ public class SearchController {
         //access building combo box
         String building = (String) menuView.buildingCombo.getSelectedItem();
         //update room combo box according to selected building
-        
+
         //access room combo box
         String room = (String) menuView.roomCombo.getSelectedItem();
         //access date combo box
         String date = (String) menuView.dateCombo.getSelectedItem();
 
-        //update list of available times
-        availableTimes = DBManager.returnSearch(building, room, date);
-        //display list of available times
-        menuView.listModel3.removeAllElements();
-        for (String time : availableTimes) {
-            System.out.println(time);
-            menuView.listModel3.addElement(time);
+        if (building == null || building.equals("")
+                || room == null || room.equals("")
+                || date == null || date.equals("")) {
+            menuView.displayError("Invalid Search Parameters.");
+        } else {
+            //update list of available times
+            availableTimes = DBManager.returnSearch(building, room, date);
+            //display list of available times
+            menuView.listModel3.removeAllElements();
+            for (String time : availableTimes) {
+                //System.out.println(time);
+                menuView.listModel3.addElement(time);
+            }
         }
-    }
 
-    
+    }
 
 }

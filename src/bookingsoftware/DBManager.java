@@ -28,8 +28,7 @@ public class DBManager {
         System.out.println(DB.getConnection());
         establishConnection();
         // DATABASE TESTING EXECUTABLE
-        
-        
+
         //returnSearch('WZ', 301);
     }
 
@@ -68,7 +67,7 @@ public class DBManager {
 
         String insertSQL = "INSERT INTO " + table + " VALUES (" + data + ")";
 
-        System.out.println("#######################\n" + insertSQL + "\n#######################");
+        //System.out.println("#######################\n" + insertSQL + "\n#######################");
         try ( PreparedStatement PS = conn.prepareStatement(insertSQL)) {
 
             PS.executeUpdate();
@@ -164,7 +163,7 @@ public class DBManager {
         Statement statement = conn.createStatement();
 
         try {
-            
+
             rs = statement.executeQuery(command);
             while (rs.next()) {
                 userInfo result = new userInfo();
@@ -194,10 +193,15 @@ public class DBManager {
 
     public static int returnisBooked(String time, String building, String room, String date) throws SQLException {
         ResultSet rs = null;
-        String command = "SELECT \"" + time + "\" FROM BOOKINGS WHERE "
-                + "BUILDINGCODE = '" + building
-                + "' AND ROOMCODE = " + room
-                + " AND BOOKINGDATE = '" + date + "'";
+        
+        String times = "\""+time+"\"";
+        
+        String command = "SELECT " + times + " FROM BOOKINGS WHERE "
+                + "BUILDINGCODE = '" + building + "' "
+                + "AND ROOMCODE = " + room + " "
+                + "AND BOOKINGDATE = '" + date + "'";
+
+
         Statement statement = conn.createStatement();
         int booked = -1; // Error occurred:
 
@@ -216,6 +220,7 @@ public class DBManager {
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
+
         return booked;
     }
 
@@ -232,21 +237,26 @@ public class DBManager {
     }
 
     public static boolean createBooking(userInfo user, String buildingCode, String roomCode, String time, String date) throws SQLException {
-
+        if (user.getStudentID() == 0 ||
+                user.getName().equals("") || buildingCode.equals("")
+                || roomCode.equals("") || date.equals("") ||
+                time.equals("")) { return false; }
+        
         String booking = user.getStudentID() + ", '" + user.getName()
                 + "', '" + buildingCode + "', " + roomCode + ", '" + date + "', '" + time + "'";
 
         String createSQL = "INSERT INTO BOOKEDROOMS (STUDENT_ID, FIRST_NAME, BUILDINGCODE, ROOMCODE, DATES, TIMES) VALUES "
                 + "(" + booking + ")";
+       
+        if (returnisBooked(time, buildingCode, roomCode, date) == 0) {
+            try ( PreparedStatement PS = conn.prepareStatement(createSQL)) {
 
-        System.out.println("#######################\n" + booking + "\n#######################");
-        try ( PreparedStatement PS = conn.prepareStatement(createSQL)) {
+                PS.executeUpdate();
+                return true;
 
-            PS.executeUpdate();
-            return true;
-
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+            }
         }
         return false;
     }
@@ -319,11 +329,11 @@ public class DBManager {
             rs = statement.executeQuery(command);
             if (rs.next()) {
                 for (String timeslot : timeslots) {
-                    
+
                     if (rs.getBoolean(timeslot)) {
                         continue;
                     }
-                    System.out.println(timeslot);
+                    //System.out.println(timeslot);
                     result[counter] = timeslot;
                     counter++;
                 }
