@@ -14,9 +14,8 @@ import java.util.Map;
  */
 public class UserManager {
 
-    private Map<Integer, userInfo> users = new HashMap<>();
-    public static userInfo currentUser = null;
-    //DBManager db = new DBManager();
+    private final Map<Integer, userInfo> users = new HashMap<>();
+    public static userInfo currentUser = new userInfo();
 
     public int addUser(int id, String name, String password, String email, long phone) throws SQLException {
         //some fields are empty
@@ -34,12 +33,12 @@ public class UserManager {
             return -3;
         }
         //check if user is in the database
-        if (!users.containsKey(id)) { 
+        if (!users.containsKey(id)) {
             currentUser = new userInfo(id, name, password, email, phone);
             users.put(id, currentUser);
-                // (student_id, first_name, email, phone, password, event)
-            String appendUser = id + ", '"+name+ "', '"+email+ "', "+phone+ ", '"+password+ "'";
-            
+            // (student_id, first_name, email, phone, password, event)
+            String appendUser = id + ", '" + name + "', '" + email + "', " + phone + ", '" + password + "', false";
+
             DBManager.appendToField("USERINFO", appendUser);
             System.out.println("user added. returned true");
             return 1;
@@ -50,23 +49,32 @@ public class UserManager {
     }
 
     public boolean authenticateUser(int id, String password) throws SQLException {
-        
         loadUsers();
-        
-        if (users.containsKey(id)) { // IF ID EXISTS IN HASHMAP
+        if (users.containsKey(id)) {
             this.currentUser = users.get(id);
             return users.get(id).getPassword().equals(password);
         }
         return false;
     }
-    public void loadUsers() throws SQLException { // LOAD USERS FROM DATABASE INTO PROGRAM
-        
-        for (Map.Entry<Integer, userInfo> entry : DBManager.returnAllUsers().entrySet()) { // ITERATE THROUGH DATABASE FOR USERS
+
+    public void loadUsers() throws SQLException {
+
+        for (Map.Entry<Integer, userInfo> entry : DBManager.returnAllUsers().entrySet()) {
             Integer studentId = entry.getKey();
             userInfo u = entry.getValue();
 
             // Put the key-value pair into userMap
             users.put(studentId, u);
         }
+    }
+    
+    public static void refreshUserBookings() throws SQLException{
+        System.out.println("user bookings refreshed.");
+        currentUser.bookingList = DBManager.returnUserBookings(currentUser.getStudentID());
+    }
+
+    public static String[] getBookingList() {
+        System.out.println("getbookinglist called in usermanager");
+        return currentUser.bookingList;
     }
 }

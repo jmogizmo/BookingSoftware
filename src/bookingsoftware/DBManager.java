@@ -35,12 +35,12 @@ public class DBManager {
     }
 
     public Connection getConnection() {
-        return this.conn; // RETURN CONNECTION
+        return this.conn;
     }
 
     public static int establishConnection() {
         if (conn == null) {
-            try { // ATTEMPT TO CONNECT TO DATABASE
+            try {
                 conn = DriverManager.getConnection(URL, USER_NAME, PASS);
                 System.out.println(URL + " Connection is successful.");
                 return 0;
@@ -52,7 +52,7 @@ public class DBManager {
     }
 
     public static void closeConnections() {
-        if (conn != null) { // CLOSE DATABASE
+        if (conn != null) {
             try {
                 conn.close();
             } catch (SQLException ex) {
@@ -61,66 +61,74 @@ public class DBManager {
         }
     }
 
-    public static void appendToField(String table, String data) throws SQLException { // MULTI-USE SQL METHOD TO APPEND TO ANY TABLE
+    public static void appendToField(String table, String data) throws SQLException {
 
-        String insertSQL = "INSERT INTO " + table + " VALUES (" + data + ")"; // FORMULATE STATEMENT
+        String insertSQL = "INSERT INTO " + table + " VALUES (" + data + ")";
 
         System.out.println("#######################\n" + insertSQL + "\n#######################");
-        try ( PreparedStatement PS = conn.prepareStatement(insertSQL)) { // TRY EXECUTE STATEMENT
+        try ( PreparedStatement PS = conn.prepareStatement(insertSQL)) {
 
             PS.executeUpdate();
 
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage()); // RETURN ERROR IF DID NOT WORK
+            System.err.println(ex.getMessage());
         }
     }
 
-    public static userInfo returnUserInfo(String field, String target) throws SQLException { // RETURN SPECIFIED USER BASED OFF FIELD
+    public static userInfo returnUserInfo(String field, String target) throws SQLException {
 
         // E.G: FIELD = FIRST_NAME TARGET = martin
         ResultSet rs = null;
         userInfo result = null;
-        String command = "SELECT * FROM USERINFO WHERE" + field + "=" + target; // FORMULATE SQL STATEMENT
+        String command = "SELECT * FROM USERINFO WHERE" + field + "=" + target;
         Statement statement = conn.createStatement();
 
         try {
-            rs = statement.executeQuery(command); // TRY EXECUTE SQL COMMAND
-            if (rs.next()) { // IF QUERY HAS A ROW
+            rs = statement.executeQuery(command);
+            if (rs.next()) {
 
-                result = new userInfo(); // CREATE TEMP USER
+                result = new userInfo();
 
                 int STUDENT_ID = rs.getInt("STUDENT_ID");
                 String FIRST_NAME = rs.getString("FIRST_NAME");
                 String EMAIL = rs.getString("EMAIL");
                 long PHONE = rs.getLong("PHONE");
                 String RSPASSWORD = rs.getString("PASSWORD");
-                
+
                 result.setStudentID(STUDENT_ID);
                 result.setName(FIRST_NAME);
                 result.setEmail(EMAIL);
                 result.setPhone(PHONE);
                 result.setPassword(RSPASSWORD);
-                
-                // CREATE USER FROM ROW OF DATA
             }
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage()); // RETURN ERROR MESSAGE
+            System.err.println(ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
-        return result; // RETURN USER
+        return result;
     }
 
-    public static userInfo returnUserInfo(int target) throws SQLException { // RETURN SPECIFIED USER BASED OFF STUDENT ID
+    public static userInfo returnUserInfo(int target) throws SQLException {
 
         // E.G: FIELD = studentID TARGET = 14
         ResultSet rs = null;
         userInfo result = null;
-        String command = "SELECT * FROM USERINFO WHERE STUDENT_ID = " + target; // FORMULATE SQL STATEMENT
+        String command = "SELECT * FROM USERINFO WHERE STUDENT_ID = " + target;
         Statement statement = conn.createStatement();
 
         try {
-            rs = statement.executeQuery(command); // TRY EXECUTE SQL COMMAND
+            rs = statement.executeQuery(command);
 
-            if (rs.next()) { // IF QUERY HAS ROW
+            if (rs.next()) {
 
                 result = new userInfo();
 
@@ -135,29 +143,27 @@ public class DBManager {
                 result.setEmail(EMAIL);
                 result.setPhone(PHONE);
                 result.setPassword(PASSWORD);
-                
-                // CREATE USER FROM QUERY
 
             } else {
-                System.out.println("No user found with given STUDENT_ID: " + target); // ERROR MESSAGE: NOT FOUND
+                System.out.println("No user found with given STUDENT_ID: " + target);
             }
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage()); // RETURN ERROR
+            System.err.println(ex.getMessage());
         }
-        return result; // RETURN USER
+        return result;
     }
 
-    public static Map<Integer, userInfo> returnAllUsers() throws SQLException { // RETURN HASHMAP OF ALL USERS
+    public static Map<Integer, userInfo> returnAllUsers() throws SQLException {
 
-        Map<Integer, userInfo> userMap = new HashMap<>(); // CREATE HASHMAP
+        Map<Integer, userInfo> userMap = new HashMap<>();
         ResultSet rs = null;
-        String command = "SELECT * FROM USERINFO"; // CREATE SQL STATEMENT
+        String command = "SELECT * FROM USERINFO";
         Statement statement = conn.createStatement();
 
         try {
             
-            rs = statement.executeQuery(command); // EXECUTE SQL COMMAND
-            while (rs.next()) { // ITERATE THROUGH ALL ROWS
+            rs = statement.executeQuery(command);
+            while (rs.next()) {
                 userInfo result = new userInfo();
 
                 int STUDENT_ID = rs.getInt("STUDENT_ID");
@@ -171,33 +177,32 @@ public class DBManager {
                 result.setEmail(EMAIL);
                 result.setPhone(PHONE);
                 result.setPassword(PASSWORD);
-                
-                // CREATE TEMP USER FROM ROW OF QUERY
-                
+
                 userMap.put(STUDENT_ID, result);
-                // PLACE TEMP USER INTO HASHMAP
+
             }
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage()); // RETURN ERROR MESSAGE
+            System.err.println(ex.getMessage());
+
         }
 
-        return userMap; // RETURN USER HASHMAP
+        return userMap;
     }
 
-    public static int returnisBooked(String time, String building, int room, String date) throws SQLException { // RETURN SPECIFIFED BOOKING AVAILABILITY
+    public static int returnisBooked(String time, String building, String room, String date) throws SQLException {
         ResultSet rs = null;
         String command = "SELECT \"" + time + "\" FROM BOOKINGS WHERE "
                 + "BUILDINGCODE = '" + building
                 + "' AND ROOMCODE = " + room
-                + " AND BOOKINGDATE = '" + date + "'"; // CREATE SQL STATMENT
+                + " AND BOOKINGDATE = '" + date + "'";
         Statement statement = conn.createStatement();
         int booked = -1; // Error occurred:
 
         try {
-            rs = statement.executeQuery(command); // TRY EXECUTE SQL COMMAND
-            if (rs.next()) { // IF QUERY EXISTS
+            rs = statement.executeQuery(command);
+            if (rs.next()) {
 
-                boolean isBooked = rs.getBoolean(time); // READ QUERY DATA
+                boolean isBooked = rs.getBoolean(time);
 
                 if (isBooked) {
                     booked = 1; // TimeSlot is Booked
@@ -206,68 +211,70 @@ public class DBManager {
                 }
             }
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage()); // RETURN ERROR
+            System.err.println(ex.getMessage());
         }
-        return booked; // RETURN ERROR
+        return booked;
     }
 
-    public static void removeFromField(String table, String data) { // MULTI-USE METHOD TO REMOVE DATA FROM A TABLE
-        String deleteSQL = "DELETE FROM " + table + " WHERE " + data; // CREATE STATEMENT
+    public static void removeFromField(String table, String data) {
+        String deleteSQL = "DELETE FROM " + table + " WHERE " + data;
 
-        try ( PreparedStatement PS = conn.prepareStatement(deleteSQL)) { // TRY EXECUTE COMMAND
+        try ( PreparedStatement PS = conn.prepareStatement(deleteSQL)) {
 
             PS.executeUpdate();
 
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage()); // RETURN ERROR MESSAGE
+            System.err.println(ex.getMessage());
         }
     }
 
     public static boolean createBooking(userInfo user, String buildingCode, String roomCode, String time, String date) throws SQLException {
-        // METHOD TO CREATE BOOKING
+
         String booking = user.getStudentID() + ", '" + user.getName()
-                + "', '" + buildingCode + "', " + roomCode + ", '" + date + "', '" + time + "'"; // FORMULATE DATA INSERTION
+                + "', '" + buildingCode + "', " + roomCode + ", '" + date + "', '" + time + "'";
 
         String createSQL = "INSERT INTO BOOKEDROOMS (STUDENT_ID, FIRST_NAME, BUILDINGCODE, ROOMCODE, DATES, TIMES) VALUES "
-                + "(" + booking + ")"; // COMBINE INTO SQL STATEMENT
+                + "(" + booking + ")";
 
         System.out.println("#######################\n" + booking + "\n#######################");
-        try ( PreparedStatement PS = conn.prepareStatement(createSQL)) { // TRY EXECUTE COMMAND
+        try ( PreparedStatement PS = conn.prepareStatement(createSQL)) {
 
             PS.executeUpdate();
-            return true; // RETURN TRUE IF SUCCESSFUL
+            return true;
 
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage()); // RETURN ERROR MESSAGE
+            System.err.println(ex.getMessage());
         }
-        return false; // RETURN FALSE IF UNSUCCESSFUL
+        return false;
     }
 
-    public static int cancelBooking(int BOOKINGID) { // METHOD TO REMOVE A BOOKING
-        String deleteSQL = "DELETE FROM BOOKEDROOMS WHERE BOOKING_ID = " + BOOKINGID; // FORMULATE SQL STATEMENT
+    public static int cancelBooking(String BOOKINGID) {
+        String deleteSQL = "DELETE FROM BOOKEDROOMS WHERE BOOKING_ID = " + BOOKINGID;
 
-        try ( PreparedStatement PS = conn.prepareStatement(deleteSQL)) { // TRY EXECUTE COMMAND
+        try ( PreparedStatement PS = conn.prepareStatement(deleteSQL)) {
 
             PS.executeUpdate();
             return 0;// Deleted
 
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage()); // RETURN ERROR
+            System.err.println(ex.getMessage());
         }
         return -1;// error
     }
 
-    public static ArrayList<String> returnUserBookings(int studentID) throws SQLException { // RETURN ARRAYLIST OF SPECIFIFED USER'S BOOKINGS
+    public static String[] returnUserBookings(int studentID) throws SQLException {
 
         ResultSet rs = null;
-        ArrayList<String> result = new ArrayList<String>(); // CREATE ARRAYLIST
-        String command = "SELECT * FROM BOOKEDROOMS WHERE STUDENT_ID = " + studentID; // CREATE SQL QUERY STATEMENT
+        String[] result = new String[50];
+        int counter = 0;
+        String command = "SELECT * FROM BOOKEDROOMS WHERE STUDENT_ID = " + studentID;
         Statement statement = conn.createStatement();
 
         try {
-            rs = statement.executeQuery(command); // TRY CREATE QUERY
+            rs = statement.executeQuery(command);
 
-            while (rs.next()) { // ITERATE THROUGH ROWS
+            //System.out.println("BOOKINGS FOR : " + studentID);
+            while (rs.next()) {
 
                 int BOOKING_ID = rs.getInt("BOOKING_ID");
                 String FIRST_NAME = rs.getString("FIRST_NAME");
@@ -277,48 +284,44 @@ public class DBManager {
                 String TIMES = rs.getString("TIMES");
 
                 String data = BOOKING_ID + " " + FIRST_NAME + " " + BUILDINGCODE + " " + ROOMCODE + " " + DATES + " " + TIMES;
-                
-                // CREATE STRING OF ROW 
-                
-                result.add(data);
-                // ADD STRING TO ARRAYLIST
+
+                result[counter] = data;
+                counter++;
+
             }
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage()); // RETURN ERROR MESSAGE
+            System.err.println(ex.getMessage());
         }
-        return result; // RETURN ARRAY LIST
+        return result;
     }
 
     public static ArrayList<String> returnSearch(String buildingCode, String roomCode, String date) throws SQLException {
-        
-        ResultSet rs = null;
-        ArrayList<String> result = new ArrayList<>(); // CREATE ARRAY LIST
 
-        String SQLtimes = "\"12:00\", \"12:30\", \"13:00\", \"13:30\", \"14:00\", \"14:30\", \"15:00\", \"15:30\",\"16:00\", "
-                + "\"16:30\", \"17:00\", \"17:30\", \"18:00\", \"18:30\", \"19:00\", \"19:30\", \"20:00\""; // STRING FOR TABLE COLUMNS
+        ResultSet rs = null;
+        ArrayList<String> result = new ArrayList<>();
+
+        String SQLtimes = "\"12:00\", \"12:30\", \"13:00\", \"13:30\", \"14:00\", \"14:30\", \"15:00\", \"15:30\",\"16:00\", \"16:30\", \"17:00\", \"17:30\", \"18:00\", \"18:30\", \"19:00\", \"19:30\", \"20:00\"";
 
         String filter = "BUILDINGCODE='" + buildingCode
                 + "' AND ROOMCODE=" + roomCode
-                + " AND BOOKINGDATE='" + date + "'"; // STRING FOR SPECIFIED BOOKING
+                + " AND BOOKINGDATE='" + date + "'";
 
-        String command = "SELECT " + SQLtimes + " FROM BOOKINGS WHERE " + filter; // COMBINE STRINGS INTO SQL STATEMENT
-        
+        String command = "SELECT " + SQLtimes + " FROM BOOKINGS WHERE " + filter;
         Statement statement = conn.createStatement();
-        
         String[] timeslots = {"12:00", "12:30", "13:00", "13:30", "14:00",
             "14:30", "15:00", "15:30", "16:00", "16:30",
-            "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"}; // STRING ARRAY TO ITERATE THROUGH
-        
+            "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
         try {
-            rs = statement.executeQuery(command); // TRY EXECUTE COMMAND
-            if (rs.next()) { // IF QUERY HAS DATA
-                for (String timeslot : timeslots) { // ITERATE THROUGH TIMESLOTS ARRAY
-                    result.add(rs.getString(timeslot)); // ADD COLUMN INFORMATION TO ARRAY
+            rs = statement.executeQuery(command);
+            if (rs.next()) {
+                for (String timeslot : timeslots) {
+                    result.add(rs.getString(timeslot));
                 }
+
             }
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage()); // RETURN ERROR MESSAGE
+            System.err.println(ex.getMessage());
         }
-        return result; // RETURN ARRAY
+        return result;
     }
 }

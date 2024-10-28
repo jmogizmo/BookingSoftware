@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -28,7 +29,7 @@ public class userInfo {
     private String email;
     private long phone;
     private int studentID;
-    private ArrayList<String> bookingList;
+    public String[] bookingList;
 
     public static String usersTXTpath = "./resources/users.txt";
 
@@ -43,11 +44,13 @@ public class userInfo {
     }
 
     public userInfo(int id, String password) {
+        this.bookingList = new String[]{"Test booking 1", "Test booking 2"};
         this.studentID = id;
         this.password = password;
     }
 
     public userInfo() {
+        this.bookingList = new String[]{"Test booking 1", "Test booking 2"};
         this.studentID = 0;
         this.name = null;
         this.email = null;
@@ -56,6 +59,7 @@ public class userInfo {
     }
 
     public userInfo(String name, int id, String password) {
+        this.bookingList = new String[]{"Test booking 1", "Test booking 2"};
         this.name = name;
         this.studentID = id;
         this.password = password;
@@ -64,6 +68,7 @@ public class userInfo {
     }
 
     public userInfo(int id, String name, String password, String email, long phone) {
+        this.bookingList = new String[]{"Test booking 1", "Test booking 2"};
         this.studentID = id;
         this.name = name;
         this.email = email;
@@ -72,19 +77,17 @@ public class userInfo {
     }
 
     public userInfo(int id, String name, String email, long phone) {
+        this.bookingList = new String[]{"Test booking 1", "Test booking 2"};
         this.studentID = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
     }
     
-    public void addBooking(String booking){
-        bookingList.add(booking);
-    }
-    
-    public ArrayList<String> getBookingList(){
-        return bookingList;
-    }
+//    //refreshes booking list
+//    public void makeBookingList() throws SQLException{
+//        bookingList = DBManager.returnUserBookings(this.studentID);       
+//    }
 
     public String getName() {
         return name;
