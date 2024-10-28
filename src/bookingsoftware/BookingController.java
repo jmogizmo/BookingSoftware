@@ -19,12 +19,12 @@ import javax.swing.ButtonGroup;
 public class BookingController {
 
     private MainMenuView2 menuView;
-    private UserManager userManager;
+    private BookingInfo bookingInfo;
+    private DBManager db;
 
-    public BookingController(MainMenuView2 menuView, UserManager userManager) {
+    public BookingController(MainMenuView2 menuView, BookingInfo bookingInfo) {
         this.menuView = menuView;
-        this.userManager = userManager;
-        
+        this.bookingInfo = bookingInfo;
         this.menuView.addConfirmBookingListener(e -> {
             try {
                 createBooking();
@@ -32,60 +32,36 @@ public class BookingController {
                 Logger.getLogger(BookingController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        this.menuView.addCancelBookingListener(e -> {
-            try {
-                cancelBooking();
-            } catch (SQLException ex) {
-                Logger.getLogger(BookingController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-        this.menuView.addCancelSelectedBookingListener(e -> {
-            try {
-                cancelSelectedBooking();
-            } catch (SQLException ex) {
-                Logger.getLogger(BookingController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+        this.menuView.addCancelBookingListener(e -> cancelBooking());
     }
 
-    public void cancelBooking() throws SQLException {
-        //refresh user bookings
-        userManager.refreshUserBookings();
-        menuView.listModel2.removeAllElements();
-        for (String booking : userManager.getBookingList()) {
-            menuView.listModel2.addElement(booking);
-        }
+    public void showMyBookings(int ID) {
+        //read all bookings belonging to a specific studentID
     }
 
-    public void cancelSelectedBooking() throws SQLException {
-        //detect selected string from list
-        String bookingToCancel = menuView.cancelBookingList.getSelectedValue();
-        //extrtact bookingID
-        String[] parts = bookingToCancel.split(" ");
-        //parse boooking into DBmanager cancel booking method
-        int value = DBManager.cancelBooking(parts[0]);
-        if (value == 0) {
-            menuView.displayMessage("Booking has been Cancelled!");
-        } else {
-            menuView.displayError("Error");
-        }
-        //refresh and update the list
-        cancelBooking();
+    public void showTimes() {
+        //read times from bookings database
+        //if booked, make the time red
+        //if available, make the time green
+    }
+
+    public void cancelBooking() {
+
     }
 
     public String getSelectedButton(int index, ButtonGroup bg1, ButtonGroup bg2, ButtonGroup bg3) {
         ButtonGroup[] buttonGroups = {bg1, bg2, bg3};
 
         //search through every radiobutton in each buttongroup to find the selected one
-        for (Enumeration<AbstractButton> buttons = buttonGroups[index].getElements(); buttons.hasMoreElements();) {
-            AbstractButton button = buttons.nextElement();
+            for (Enumeration<AbstractButton> buttons = buttonGroups[index].getElements(); buttons.hasMoreElements();) {
+                AbstractButton button = buttons.nextElement();
 
-            if (button.isSelected()) {
-                //return the text if it is selected
-                return button.getText();
+                if (button.isSelected()) {
+                    //return the text if it is selected
+                    return button.getText();
+                }
+
             }
-
-        }
 
         return "";
     }
@@ -111,22 +87,7 @@ public class BookingController {
         String time = menuView.timeList.getSelectedValue();
         String date = menuView.dateList.getSelectedValue();
 
-        switch (DBManager.returnisBooked(time, building, room, date)) {
-            case 0:
-                DBManager.createBooking(UserManager.currentUser, building, room, time, date);
-                menuView.displayMessage("Booking Successful!");
-                userManager.refreshUserBookings();
-                break;
-            //error already boooked
-            case 1:
-                menuView.displayError("Booking not available");
-                break;
-            //other error
-            default:
-                menuView.displayError("unknown ERROR");
-                break;
-        }
-
+        DBManager.createBooking(UserManager.currentUser, building, room, time, date);
     }
 
 }
