@@ -49,9 +49,13 @@ public class BookingController {
     }
 
     public void cancelBooking() throws SQLException {
-        //refresh user bookings
+        //refresh user bookinglist from database
         userManager.refreshUserBookings();
+        
+        //clear gui list
         menuView.listModel2.removeAllElements();
+        
+        //re-add everything onto gui list
         for (String booking : userManager.getBookingList()) {
             menuView.listModel2.addElement(booking);
         }
@@ -91,6 +95,7 @@ public class BookingController {
     }
 
     public void createBooking() throws SQLException {
+        //extract selected building
         int x = menuView.buildingTabs.getSelectedIndex();
         String building;
         switch (x) {
@@ -107,14 +112,21 @@ public class BookingController {
                 building = "";
                 break;
         }
+        //extract selected room
         String room = getSelectedButton(x, menuView.wgButtonGroup, menuView.wzButtonGroup, menuView.waButtonGroup);
+        //extract selected time
         String time = menuView.timeList.getSelectedValue();
+        //extract selected date
         String date = menuView.dateList.getSelectedValue();
 
+        //check if booking is available
         switch (DBManager.returnisBooked(time, building, room, date)) {
+            //booking is available
             case 0:
+                //make booking
                 DBManager.createBooking(UserManager.currentUser, building, room, time, date);
                 menuView.displayMessage("Booking Successful!");
+                //update bookinglist
                 userManager.refreshUserBookings();
                 break;
             //error already boooked

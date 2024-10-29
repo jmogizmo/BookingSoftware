@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 public class MainMenuController<E> {
 
     private MainMenuView2 mainMenuView;
-    //private LoginRegisterView loginView;
     private LoginRegisterView2 loginView;
     private UserManager users;
 
@@ -45,6 +44,7 @@ public class MainMenuController<E> {
                     users.currentUser.getEmail(),
                     users.currentUser.getPhone());
                     showMyBookings();
+            //go to view profile tab
             mainMenuView.jTabbedPane1.setSelectedIndex(5);
         } else {
             mainMenuView.displayError("ERROR");
@@ -54,7 +54,9 @@ public class MainMenuController<E> {
     public void showMyBookings() throws SQLException{
         //refresh user bookings
         users.refreshUserBookings();
+        //remove all elements from gui list
         mainMenuView.listModel1.removeAllElements();
+        //re-add all elements from gui list
         for(String booking : users.getBookingList()){
             mainMenuView.listModel1.addElement(booking);
         }
@@ -69,6 +71,7 @@ public class MainMenuController<E> {
         mainMenuView.dispose();
         //clear user details
         users.currentUser = new userInfo();
+        //reset ID and PW fields
         loginView.IDField.setText("");
         loginView.passwordField.setText("");
 

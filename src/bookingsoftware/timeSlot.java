@@ -21,9 +21,6 @@ public class timeSlot {
     
     public String toString() {
         String string = "empty";
-        
-        
-        
         return string;
     }
 

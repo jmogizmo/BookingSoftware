@@ -9,6 +9,7 @@ package bookingsoftware;
  * @author jmone
  */
 public class ComputerRoom extends roomInfo{
+    //potential feature: students being able to book computer rooms
     private int numComputers;
     public String building;
     public int roomCode;

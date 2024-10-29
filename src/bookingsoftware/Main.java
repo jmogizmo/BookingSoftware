@@ -43,6 +43,8 @@ public class Main extends JFrame {
                 new LoginRegisterController(loginView, userManager, menuView, userDetailsView);
                 new MainMenuController(menuView, loginView, userManager);
                 new BookingController(menuView, userManager);
+                
+                //display login screen
                 loginView.setVisible(true);
             });
         } else {

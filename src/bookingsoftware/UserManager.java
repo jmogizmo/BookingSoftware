@@ -51,7 +51,9 @@ public class UserManager {
     }
 
     public boolean authenticateUser(int id, String password) throws SQLException {
+        //load users into userlist
         loadUsers();
+        //check if user is in user list
         if (users.containsKey(id)) {
             this.currentUser = users.get(id);
             return users.get(id).getPassword().equals(password);
@@ -71,11 +73,13 @@ public class UserManager {
     }
     
     public static void refreshUserBookings() throws SQLException{
+        //update current user's bookings from database
         System.out.println("user bookings refreshed.");
         currentUser.bookingList = DBManager.returnUserBookings(currentUser.getStudentID());
     }
 
     public static String[] getBookingList() {
+        //access the bookings of the current user
         System.out.println("getbookinglist called in usermanager");
         return currentUser.bookingList;
     }

@@ -21,7 +21,7 @@ public class LoginRegisterController {
     private MainMenuView2 menuView;
     private UserDetailsView2 userDetailsView;
     public static userInfo currentUser;
-    
+
     public LoginRegisterController(LoginRegisterView2 view, UserManager model, MainMenuView2 menuView, UserDetailsView2 userDetailsView) {
         this.loginView = view;
         this.model = model;
@@ -43,41 +43,42 @@ public class LoginRegisterController {
             }
         });
         this.userDetailsView.addBackListener(e -> backToLogin());
-        //this.loginView.addDevListener(e -> devButton());
     }
 
     private void login() throws SQLException {
+        //extract ID input
         int id = loginView.getID();
+        //extract PW input
         String password = loginView.getPassword();
-        if(id == -1){
+        //id non-numeric
+        if (id == -1) {
             loginView.displayError("Student ID must be numeric.");
         }
+        //successful login
         if (model.authenticateUser(id, password)) {
-            //successful login
             //proceed to main program
             loginView.dispose();
             menuView.setVisible(true);
+        //unsuccessful login
         } else {
-            //unsuccessful login
             loginView.displayError("Invalid login details.");
         }
     }
 
     private void register() {
-
         loginView.dispose();
         userDetailsView.setVisible(true);
     }
 
     private void saveUserDetails() throws SQLException {
-        
+        //extract user entered details
         int id = userDetailsView.getID();
         String name = userDetailsView.getName();
         String password = userDetailsView.getPassword();
         String email = userDetailsView.getEmail();
         long phone = userDetailsView.getPhoneNumber();
-        
-        
+
+        //register the user
         int check = model.addUser(id, name, password, email, phone);
         switch (check) {
             case 1:
@@ -85,15 +86,17 @@ public class LoginRegisterController {
                 userDetailsView.dispose();
                 loginView.setVisible(true);
                 break;
-        
+
             case -1:
                 //error user already exists.
                 loginView.displayError("User already exists.");
                 break;
             case -2:
+                //ID non-numeric
                 loginView.displayError("Student ID must be numeric");
                 break;
             case -3:
+                //phone non-numeric
                 loginView.displayError("Phone number must be numeric");
                 break;
             default:
@@ -105,6 +108,7 @@ public class LoginRegisterController {
     }
 
     private void backToLogin() {
+        //back button
         userDetailsView.dispose();
         loginView.setVisible(true);
     }

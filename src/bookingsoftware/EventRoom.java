@@ -9,8 +9,8 @@ package bookingsoftware;
  * @author jmone
  */
 public class EventRoom extends roomInfo {
+    //potential feature: students being able to book event rooms (i.e. lecture hall)
 
-    //subclass of roomInfo but has extra variable: capacity (# of ppl)
     public String building;
     public int roomCode;
     public boolean isAvailable;
