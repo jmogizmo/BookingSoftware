@@ -36,7 +36,7 @@ public class MainMenuController<E> {
 
     }
 
-    private void showDetails() throws SQLException{
+    private void showDetails() throws SQLException{ // VIEW PROFILE
         //check if currentUser has been loaded
         if (users.currentUser != null) {
             mainMenuView.setDetails(users.currentUser.getName(),

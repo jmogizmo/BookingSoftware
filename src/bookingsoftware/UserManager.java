@@ -20,16 +20,16 @@ public class UserManager {
     public int addUser(int id, String name, String password, String email, long phone) throws SQLException {
         //some fields are empty
         if (id == 0 || name.equals("") || password.equals("") || email.equals("") || phone == 0) {
-            System.out.println("addUser returned false. empty fields");
+            
             return 0;
         }
         //check if id and phone are valid
         if (id == -1) {
-            System.out.println("id error");
+
             return -2;
         }
         if (phone == -1) {
-            System.out.println("Phone number error");
+
             return -3;
         }
         
@@ -42,11 +42,11 @@ public class UserManager {
             String appendUser = id + ", '" + name + "', '" + email + "', " + phone + ", '" + password + "'";
 
             DBManager.appendToField("USERINFO", appendUser);
-            System.out.println("user added. returned true");
+
             return 1;
         }
         //User already exists
-        System.out.println("User already exists");
+
         return -1;
     }
 
@@ -74,13 +74,13 @@ public class UserManager {
     
     public static void refreshUserBookings() throws SQLException{
         //update current user's bookings from database
-        System.out.println("user bookings refreshed.");
+
         currentUser.bookingList = DBManager.returnUserBookings(currentUser.getStudentID());
     }
 
     public static String[] getBookingList() {
         //access the bookings of the current user
-        System.out.println("getbookinglist called in usermanager");
+
         return currentUser.bookingList;
     }
 }

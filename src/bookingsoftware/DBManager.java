@@ -105,16 +105,6 @@ public class DBManager {
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (statement != null) {
-                statement.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
         }
         return result;
     }
@@ -185,7 +175,6 @@ public class DBManager {
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-
         }
 
         return userMap;
@@ -200,8 +189,7 @@ public class DBManager {
                 + "BUILDINGCODE = '" + building + "' "
                 + "AND ROOMCODE = " + room + " "
                 + "AND BOOKINGDATE = '" + date + "'";
-
-
+        
         Statement statement = conn.createStatement();
         int booked = -1; // Error occurred:
 
@@ -333,7 +321,7 @@ public class DBManager {
                     if (rs.getBoolean(timeslot)) {
                         continue;
                     }
-                    //System.out.println(timeslot);
+
                     result[counter] = timeslot;
                     counter++;
                 }

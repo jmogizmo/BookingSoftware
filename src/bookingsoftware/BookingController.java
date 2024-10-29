@@ -48,7 +48,7 @@ public class BookingController {
         });
     }
 
-    public void cancelBooking() throws SQLException {
+    public void cancelBooking() throws SQLException { // Enters cancel booking menu
         //refresh user bookinglist from database
         userManager.refreshUserBookings();
         
