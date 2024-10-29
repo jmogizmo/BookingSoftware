@@ -42,6 +42,13 @@ public class LoginRegisterController {
                 Logger.getLogger(LoginRegisterController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        this.loginView.addPasswordFieldListener(e -> {
+            try {
+                login();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginRegisterController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         this.userDetailsView.addBackListener(e -> backToLogin());
     }
 

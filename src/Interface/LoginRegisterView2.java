@@ -1,13 +1,13 @@
 package Interface;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author jmone
@@ -95,6 +95,11 @@ public class LoginRegisterView2 extends javax.swing.JFrame {
 
         label1.setText("Don't have an account?");
 
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
         passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 passwordFieldKeyPressed(evt);
@@ -173,12 +178,18 @@ public class LoginRegisterView2 extends javax.swing.JFrame {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void IDFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDFieldKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            passwordField.requestFocusInWindow();
+        }
     }//GEN-LAST:event_IDFieldKeyPressed
 
     private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
-        // TODO add your handling code here:
+        //
     }//GEN-LAST:event_passwordFieldKeyPressed
+
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     public int getID() {
         try {
@@ -197,15 +208,20 @@ public class LoginRegisterView2 extends javax.swing.JFrame {
         loginButton.addActionListener(listener);
     }
 
+    public void addPasswordFieldListener(ActionListener listener) {
+        passwordField.addActionListener(listener);
+        
+    }
+
     public void addRegisterListener(ActionListener listener) {
         registerButton.addActionListener(listener);
     }
-    
+
     //method for error message pop up
     public void displayError(String error) {
         JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
     }
-    
+
     /**
      * @param args the command line arguments
      */
