@@ -107,7 +107,7 @@ public class LoginRegisterView2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\jmone\\Downloads\\AUT_Logo_New.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interface/AUT_Logo_New.jpg"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(200, 100));
         jLabel1.setMinimumSize(new java.awt.Dimension(200, 100));
         jLabel1.setPreferredSize(new java.awt.Dimension(200, 100));
